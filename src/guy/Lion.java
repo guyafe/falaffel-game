@@ -2,6 +2,6 @@ package guy;
 
 public class Lion {
 
-    public static void String LION = "lion";
+    public static String LION = "lion";
     
 }
