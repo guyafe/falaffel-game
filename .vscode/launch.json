@@ -6,6 +6,7 @@
     "configurations": [
         {
             "type": "java",
+
             "name": "Launch MyGame",
             "request": "launch",
             "mainClass": "main.MyGame",
@@ -13,30 +14,9 @@
         },
         {
             "type": "java",
-            "name": "Launch App",
-            "request": "launch",
-            "mainClass": "guy.App",
-            "projectName": "falaffel-game-1_d3eb4eb0"
-        },
-        {
-            "type": "java",
-            "name": "Launch App",
-            "request": "launch",
-            "mainClass": "App",
-            "projectName": "falaffel-game-1_d3eb4eb0"
-        },
-        {
-            "type": "java",
             "name": "Debug (Launch) - Current File",
             "request": "launch",
             "mainClass": "${file}"
-        },
-        {
-            "type": "java",
-            "name": "Debug (Launch)-App<falaffel-game_17e9bebd>",
-            "request": "launch",
-            "mainClass": "App",
-            "projectName": "falaffel-game_17e9bebd"
         }
     ]
 }
