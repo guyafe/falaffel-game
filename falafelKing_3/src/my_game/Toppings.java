@@ -9,38 +9,58 @@ import java.util.ArrayList;
 
 public class Toppings{
 
-    private final SaladContainer saladContainer = new SaladContainer();
-    private final FriesContainer friesContainer = new FriesContainer();
-    private final HumusContainer humusContainer = new HumusContainer();
-    private final FalafelContainer falafelContainer = new FalafelContainer();
-    private ArrayList<Topping> toppings;
 
-    public void initToppings(){
-        this.toppings=new ArrayList<Topping>();
+    // private final SaladContainer saladContainer = new SaladContainer();
+    // private final FriesContainer friesContainer = new FriesContainer();
+    // private final HumusContainer humusContainer = new HumusContainer();
+    // private final FalafelContainer falafelContainer = new FalafelContainer();
+    //  private ArrayList<Topping> to = new ArrayList<Topping>();
+    
+    // private Topping salad;
+    // private Topping hummus;
+    // private Topping fries;
+    // private Topping falafel;
 
-        Topping T = new Topping("salad");
+    // public Toppings(){
+    //     this.falafel = new Topping(top.falafel);
+    //     this.salad = new Topping(top.Salad);
+    //     this.fries = new Topping(top.fries);
+    //     this.hummus = new Topping(top.hummus);
         
-        T.setLocation(new Point(20, 20));
-        T.setQuantity(10);
-        toppings.add(T);
+    // }
 
-        T = new Topping("fries");
-        T.setLocation(new Point(40, 20));
-        T.setQuantity(15);
-        toppings.add(T);
 
-        T = new Topping ("humus");
-        T.setLocation(new Point(20, 40));
-        T.setQuantity(10);
-        toppings.add(T);
 
-        T = new Topping("falafel");
-        T.setLocation(new Point(20, 40));
-        T.setQuantity(10);
-        toppings.add(T);
-    }
 
-    public ArrayList<Topping> getToppings() {
-		return toppings;
-	}
+
+
+
+    // public void initToppings(){
+    //     this.toppings=new ArrayList<Topping>();
+
+    //     Topping T = new Topping("salad");
+        
+    //     T.setLocation(new Point(20, 20));
+    //     T.setQuantity(10);
+    //     toppings.add(T);
+
+    //     T = new Topping("fries");
+    //     T.setLocation(new Point(40, 20));
+    //     T.setQuantity(15);
+    //     toppings.add(T);
+
+    //     T = new Topping ("humus");
+    //     T.setLocation(new Point(20, 40));
+    //     T.setQuantity(10);
+    //     toppings.add(T);
+
+    //     T = new Topping("falafel");
+    //     T.setLocation(new Point(20, 40));
+    //     T.setQuantity(10);
+    //     toppings.add(T);
+    // }
+
+    // public ArrayList<Topping> getToppings() {
+	// 	return toppings;
+	// }
 }
