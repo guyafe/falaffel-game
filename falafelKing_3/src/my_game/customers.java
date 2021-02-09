@@ -11,10 +11,10 @@ public class customers  {
 
 	public enum customerLocation{
 		a (400,400),  //סתם ערכים כרגע. לשנות ככה שיתאים בלוח
-		b (500,400),
-		c (600,400),
-		d (700,400),
-		e (800,400);
+		b (600,400),
+		c (800,400),
+		d (1000,400),
+		e (1200,400);
 		private final int xLocation, yLocation;
 		private customerLocation(int xLocation, int yLocation) {
 			this.xLocation = xLocation;
@@ -42,12 +42,17 @@ public class customers  {
 
 
 	private customer[] customers;
+	private boolean[] imageNum;
 	private PlayerListener playerListener;
 
 	public customers (PlayerListener pListener){
 		customers = new customer[5];
 		for (int i = 0; i < customers.length; i++) {
 			customers[i]=null;
+		}
+		imageNum = new boolean[5];
+		for (int i = 0; i < imageNum.length; i++) {
+			imageNum[i]=false;
 		}
 		this.playerListener=pListener;
 	}
@@ -57,13 +62,16 @@ public class customers  {
 	}
 
 	public void addCustomer(){
-		customerLocation loc = customerLocation.a;
 		int i=(int) ((Math.random())*5);
 		while (customers[i]!=null) {
 			i=(int) ((Math.random())*5);
-			loc.next();
 		}
-		this.customers[i]=new customer(String.valueOf(i),true, loc, playerListener);//לשנות את ה"אמת" לפונקציה שמקבלת אם המנה מוכנה
+		int j=(int) ((Math.random())*5);
+		while (imageNum[j]!=false) {
+			j=(int) ((Math.random())*5);
+		}
+		this.customers[i]=new customer(String.valueOf(j),true, customerLocation.values()[i], playerListener);//לשנות את ה"אמת" לפונקציה שמקבלת אם המנה מוכנה
+		imageNum[j]=true;
 		content.addCharacter(i);
 	}
 

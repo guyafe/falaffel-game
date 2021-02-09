@@ -55,14 +55,21 @@ public class MyContent extends GameContent{
 		//Add your character shape or image to the canvas using its addShape method
 		//Use the properties of your character for the parameters of the shape.
 		
-		//Image img = new Image("bg","resources/background.png",800,600,500,500);
-		//canvas.addShape(img);
 		
+/*
+		Image img = new Image("bg","resources/background.png",200,600,500,500);
+		canvas.addShape(img);
 		
+		*/
 		customer customer = this.customers.getCustomers()[number];
 		customerLocation loc = customer.getCustomerLocation();
-		Image img = new Image(customer.getImageID(), customer.getImage(), 220, 430, loc.xLocation(), loc.yLocation());
-		canvas.addShape(img);
+		//Image img = new Image(, , 220, 430, loc.xLocation(), loc.yLocation());
+		//canvas.addShape(img);
+
+		Image img2 = new Image(customer.getImageID(),customer.getImage(),500,500,loc.xLocation(), loc.yLocation());
+		img2.setzOrder(3);
+		img2.setDraggable(false);
+		canvas.addShape(img2);
 
 	}
 	

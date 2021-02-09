@@ -25,20 +25,27 @@ public class MyGame extends Game {
 	@Override
 	protected void initCanvas() {
 		GameCanvas canvas = gameUI.canvas();
-		JFrame f = gameUI.frame();
+		//JFrame f = gameUI.frame();
 
 		
 
 
-		//Image img = new Image("bg","resources/background.png",800,600,500,500);
-		//canvas.addShape(img);
 		
-		try {
+		
+		/*try {
 			f.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("resources/background.png")))));
         } catch (IOException e) {
             e.printStackTrace();
-        }
-
+        }*/
+		Image img = new Image("bg","resources/background.png",1600,1200,410,300);
+		img.setDraggable(false);
+		canvas.addShape(img);
+		/*
+		Image img2 = new Image("2","resources/2.png",500,500,200,300);
+		img2.setzOrder(3);
+		img2.setDraggable(false);
+		canvas.addShape(img2);
+		*/
 		// board board = content.board();
 		// Image image = new Image(board.getBGid(), board.getBGimg(), 220,200, 200, 100);
 		// image.setShapeListener(board);

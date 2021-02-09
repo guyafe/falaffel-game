@@ -48,7 +48,7 @@ public class customer implements ShapeListener {
 	
 	public customer(String imgID, boolean selection, customerLocation location, PlayerListener pListener) {
 		this.imgID=imgID;
-		this.img="resources/" + (int) ((Math.random())*5) +".png";
+		this.img="resources/" +imgID+".png";
 		this.selection=selection;
 		this.patience = level.none;
 		this.patienceIMG =patience.getBar();
