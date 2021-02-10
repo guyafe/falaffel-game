@@ -29,7 +29,7 @@ public class player implements PlayerListener {
         }
     }
     public void playerSuccessInServing(){
-         score = score+100;
+         this.score = this.score+50;
      }
 
 }

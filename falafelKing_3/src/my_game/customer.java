@@ -2,6 +2,8 @@
 //מחר נגמר הסגר אז בסדר//
 package my_game;
 
+import javax.swing.text.AbstractDocument.Content;
+
 import DB.ExcelTable;
 import game.ShapeListener;
 import main.MyContent;
@@ -12,7 +14,7 @@ import shapes.Image;
 
 public class customer implements ShapeListener {
 
-	private MyContent content = new MyContent();
+	
 
 	public enum level{
 		none ("resources/none.png"),
@@ -45,8 +47,9 @@ public class customer implements ShapeListener {
 	private String patienceIMG;
 	private boolean selection;
 	private PlayerListener playerListener;
+	private MyContent content;
 	
-	public customer(String imgID, boolean selection, customerLocation location, PlayerListener pListener) {
+	public customer(String imgID, boolean selection, customerLocation location, PlayerListener pListener, MyContent content){
 		this.imgID=imgID;
 		this.img="resources/" +imgID+".png";
 		this.selection=selection;
@@ -54,6 +57,7 @@ public class customer implements ShapeListener {
 		this.patienceIMG =patience.getBar();
 		this.location = location;
 		this.playerListener = pListener;
+		this.content=content;
 
 		
 	}	
@@ -108,9 +112,10 @@ public class customer implements ShapeListener {
 	@Override
 	public void shapeClicked(String shapeID, int x, int y) {
 		if (this.selection==true){
-			Game.UI().canvas().hide(imgID);
+			Game.UI().canvas().deleteShape(imgID);
 			content.customers().removeCustomer(shapeID);
 			playerListener.playerSuccessInServing();
+			content.score().getLabel().setText(String.valueOf(content.player().getScore()));
 		}
 
 	}

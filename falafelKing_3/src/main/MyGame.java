@@ -9,6 +9,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import org.apache.xmlbeans.impl.soap.Text;
+
 import game.Game;
 import game.GameContent;
 import game.PeriodicScheduler;
@@ -19,6 +21,7 @@ import my_game.board;
 import my_game.Topping.top;
 import shapes.Circle;
 import shapes.Image;
+import shapes.TextLabel;
 
 public class MyGame extends Game {
 	
@@ -53,7 +56,8 @@ public class MyGame extends Game {
 		// image.setShapeListener(board);
 		// image.setzOrder(3);
 		// canvas.addShape(image);
-
+		
+		//מציג את התמונות של התוספות
 		Topping salad = content.salad();
 		Image img2 = new Image(salad.getImageID(),salad.getImage(),150,90,salad.getLocation().xLocation(), salad.getLocation().yLocation());
 		img2.setShapeListener(salad);
@@ -81,6 +85,29 @@ public class MyGame extends Game {
 		img2.setzOrder(3);
 		img2.setDraggable(false);
 		canvas.addShape(img2);
+
+		//מציג את הניקוד של השחקן
+		shapes.TextLabel scoreTXT = content.score();
+		scoreTXT.getLabel().setText(String.valueOf(content.player().getScore()));
+		canvas.addShape(scoreTXT);
+
+		
+		//כמות התוספות במסך
+		shapes.TextLabel saladTXT = content.saladAmount();
+		canvas.addShape(saladTXT);
+
+		shapes.TextLabel hummusTXT = content.hummusAmount();
+		canvas.addShape(hummusTXT);
+
+		shapes.TextLabel friesTXT = content.friesAmount();
+		canvas.addShape(friesTXT);
+
+		shapes.TextLabel falafelTXT = content.falafelAmount();
+		canvas.addShape(falafelTXT);
+
+
+
+		
 
 
 	}

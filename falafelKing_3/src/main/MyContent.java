@@ -15,6 +15,7 @@ import my_game.player;
 import my_game.Topping.top;
 import my_game.customers.customerLocation;
 import shapes.Image;
+import shapes.TextLabel;
 import my_game.PlayerListener;
 
 public class MyContent extends GameContent{
@@ -25,6 +26,11 @@ public class MyContent extends GameContent{
 	private Topping salad;
 	private Topping fries;
 	private Topping falafel;
+	private shapes.TextLabel score;
+	private shapes.TextLabel hummusAmount;
+	private shapes.TextLabel saladAmount;
+	private shapes.TextLabel friesAmount;
+	private shapes.TextLabel falafelAmount;
 	//TODO
 	//Declare your own character
 
@@ -33,14 +39,45 @@ public class MyContent extends GameContent{
 		// GameCanvas canvas = Game.UI().canvas();
 
 		this.board = new board();
-		this.player = new player("mor", (BoardListener)board);
+		this.player = new player("mor", (BoardListener)board);//לעשות אולי שאפשר להזין את השם שחקן
 		this.customers = new customers((PlayerListener)player);
 		this.customers.setContent(this);
 		this.falafel = new Topping(top.falafel);
         this.salad = new Topping(top.Salad);
         this.fries = new Topping(top.fries);
         this.hummus = new Topping(top.hummus);
+
+		this.score = new shapes.TextLabel("score", "10", 80, 30);
+		score.setFontSize(40);
+		score.setzOrder(3);
+		score.setDraggable(false);
+
+		this.hummusAmount = new shapes.TextLabel("hummusamount",String.valueOf(board.getHummusAmount()), 400, 440);
+		hummusAmount.setFontSize(35);
+		hummusAmount.setzOrder(3);
+		hummusAmount.setDraggable(false);
+
+		this.saladAmount = new shapes.TextLabel("saladAmount",String.valueOf(board.getSaladAmount()), 400, 370);
+		saladAmount.setFontSize(35);
+		saladAmount.setzOrder(3);
+		saladAmount.setDraggable(false);
+
+		this.friesAmount = new shapes.TextLabel("friesAmount",String.valueOf(board.getFriesAmount()), 210, 350);
+		friesAmount.setFontSize(35);
+		friesAmount.setzOrder(3);
+		friesAmount.setDraggable(false);
+
+		this.falafelAmount = new shapes.TextLabel("falafelAmount",String.valueOf(board.getFalafelAmount()), 180, 430);
+		falafelAmount.setFontSize(35);
+		falafelAmount.setzOrder(3);
+		falafelAmount.setDraggable(false);
+		
+
 	}	
+	public player player() {
+		return player;
+	}
+
 	public board board() {
 		return board;
 	}
@@ -64,6 +101,27 @@ public class MyContent extends GameContent{
 	public Topping falafel() {
 		return falafel;
 	}
+
+	public TextLabel saladAmount() {
+		return saladAmount;
+	}
+
+	public TextLabel friesAmount() {
+		return friesAmount;
+	}
+
+	public TextLabel hummusAmount() {
+		return hummusAmount;
+	}
+
+	public TextLabel falafelAmount() {
+		return falafelAmount;
+	}
+
+	public TextLabel score() {
+		return score;
+	}
+
 	public void addCharacter(int number) {
 		//TODO
 		//Create an instance of your character and set its properties with

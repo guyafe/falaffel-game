@@ -10,11 +10,11 @@ import shapes.Image;
 public class customers  {
 
 	public enum customerLocation{
-		a (400,400),  //סתם ערכים כרגע. לשנות ככה שיתאים בלוח
-		b (600,400),
-		c (800,400),
-		d (1000,400),
-		e (1200,400);
+		a (300,200),  //סתם ערכים כרגע. לשנות ככה שיתאים בלוח
+		b (400,200),
+		c (500,200),
+		d (600,200),
+		e (700,200);
 		private final int xLocation, yLocation;
 		private customerLocation(int xLocation, int yLocation) {
 			this.xLocation = xLocation;
@@ -40,17 +40,17 @@ public class customers  {
 		this.content = content;
 	}
 
-
+	private final int numOfCustomers=5;
 	private customer[] customers;
 	private boolean[] imageNum;
 	private PlayerListener playerListener;
 
 	public customers (PlayerListener pListener){
-		customers = new customer[5];
+		customers = new customer[numOfCustomers];
 		for (int i = 0; i < customers.length; i++) {
 			customers[i]=null;
 		}
-		imageNum = new boolean[5];
+		imageNum = new boolean[numOfCustomers];
 		for (int i = 0; i < imageNum.length; i++) {
 			imageNum[i]=false;
 		}
@@ -62,15 +62,15 @@ public class customers  {
 	}
 
 	public void addCustomer(){
-		int i=(int) ((Math.random())*5);
+		int i=(int) ((Math.random())*numOfCustomers);
 		while (customers[i]!=null) {
-			i=(int) ((Math.random())*5);
+			i=(int) ((Math.random())*numOfCustomers);
 		}
 		int j=(int) ((Math.random())*5);
 		while (imageNum[j]!=false) {
 			j=(int) ((Math.random())*5);
 		}
-		this.customers[i]=new customer(String.valueOf(j),true, customerLocation.values()[i], playerListener);//לשנות את ה"אמת" לפונקציה שמקבלת אם המנה מוכנה
+		this.customers[i]=new customer(String.valueOf(j),true, customerLocation.values()[i], playerListener, content);//לשנות את ה"אמת" לפונקציה שמקבלת אם המנה מוכנה
 		imageNum[j]=true;
 		content.addCharacter(i);
 	}
@@ -78,6 +78,7 @@ public class customers  {
 	public void removeCustomer(String imgID){
 		int i = Integer.valueOf(imgID);
 		this.customers[i]=null;
+		this.imageNum[i]=false;
 	}
 
 	public void changeSelection(boolean selection){
