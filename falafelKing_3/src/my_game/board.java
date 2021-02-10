@@ -11,20 +11,66 @@ import shapes.Image;
 public class board implements ShapeListener,BoardListener {
 	private final String sprayImage;
 	private final String sprayImageID;
-
+	private int saladAmount;
+	private int hummusAmount;
+	private int falafelAmount;
+	private int friesAmount;
+	private final int maxAmount=3;
 	
 	public board() {//הגדרנו מקבל מהמחלקה שחקן שמקבל את הנתונים הרלוונטיים - צריך אחר כך לשלב את זה במחלקת הלוח//
 	
-		
+		generateDish();
 		
 		// costomers... (myplayer)
 	   this.sprayImage = "resources/1.png";
 	   this.sprayImageID = "spray"; 
 	}
 
+	public void generateDish(){
+		this.falafelAmount=(int) ((Math.random())*this.maxAmount)+1;
+		this.saladAmount=(int) ((Math.random())*this.maxAmount)+1;
+		this.friesAmount=(int) ((Math.random())*this.maxAmount)+1;
+		this.hummusAmount=(int) ((Math.random())*this.maxAmount)+1;
+	}
 
+	public int getHummusAmount(){
+		return this.hummusAmount;
+	}
 
+	public int getSaladAmount(){
+		return this.saladAmount;
+	}
 
+	public int getFriesAmount(){
+		return this.friesAmount;
+	}
+
+	public int getFalafelAmount(){
+		return this.falafelAmount;
+	}
+
+	public void reduceHummus(int amount){
+		 this.hummusAmount--;
+	}
+
+	public void reducesalad(int amount){
+		 this.saladAmount--;
+	}
+
+	public void reducefries(int amount){
+		 this.friesAmount--;
+	}
+
+	public void reducefalafel(int amount){
+		 this.falafelAmount--;
+	}
+
+	public boolean isComplete(){
+		if (this.hummusAmount==0 && this.saladAmount==0 && this.friesAmount==0 && this.falafelAmount==0){
+			return true;
+		}
+		return false;
+	}
 	   public void playerLostTheGame(){
 
 	   }//המימוש של הפונקציה יהיה ציור על המסך שנגמר - הליסטנר של הבורד// 
