@@ -1,7 +1,11 @@
 package main;
+import java.lang.reflect.Array;
+
 import game.Game;
 import game.PeriodicLoop;
 import gui.GameCanvas;
+import my_game.customer;
+import my_game.customers;
 
 public class MyPeriodicLoop extends PeriodicLoop {
 
@@ -15,8 +19,18 @@ public class MyPeriodicLoop extends PeriodicLoop {
 	public void execute() {
 		// Let the super class do its work first
 		super.execute();
-		
-		this.content.customers().addCustomer();
+		int counter=0;
+		customer[] c =content.customers().getCustomers();
+
+		for (int j = 0; j < c.length; j++) {//בודק אם יש תאים ריקים במערך הלקוחות ורק אם כן אז מפעיל את הפונקציה של הוספה
+			if(c[j]==null){
+				counter++;
+			}
+		}
+		if(counter>0){
+			this.content.customers().addCustomer();
+		}
+
 		
 		//TODO
 		//Redraw your character periodically by calling the correct method
