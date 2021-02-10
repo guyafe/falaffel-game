@@ -14,7 +14,9 @@ import game.GameContent;
 import game.PeriodicScheduler;
 import gui.GameCanvas;
 import gui.GameDashboard;
+import my_game.Topping;
 import my_game.board;
+import my_game.Topping.top;
 import shapes.Circle;
 import shapes.Image;
 
@@ -51,6 +53,35 @@ public class MyGame extends Game {
 		// image.setShapeListener(board);
 		// image.setzOrder(3);
 		// canvas.addShape(image);
+
+		Topping salad = content.salad();
+		Image img2 = new Image(salad.getImageID(),salad.getImage(),150,90,salad.getLocation().xLocation(), salad.getLocation().yLocation());
+		img2.setShapeListener(salad);
+		img2.setzOrder(3);
+		img2.setDraggable(false);
+		canvas.addShape(img2);
+		
+		Topping hummus = content.hummus();
+		img2 = new Image(hummus.getImageID(),hummus.getImage(),200,90,hummus.getLocation().xLocation(), hummus.getLocation().yLocation());
+		img2.setShapeListener(hummus);
+		img2.setzOrder(3);
+		img2.setDraggable(false);
+		canvas.addShape(img2);
+
+		Topping fries = content.fries();
+		img2 = new Image(fries.getImageID(),fries.getImage(),200,90,fries.getLocation().xLocation(), fries.getLocation().yLocation());
+		img2.setShapeListener(fries);
+		img2.setzOrder(3);
+		img2.setDraggable(false);
+		canvas.addShape(img2);
+
+		Topping falafel = content.falafel();
+		img2 = new Image(falafel.getImageID(),falafel.getImage(),200,100,falafel.getLocation().xLocation(), falafel.getLocation().yLocation());
+		img2.setShapeListener(falafel);
+		img2.setzOrder(3);
+		img2.setDraggable(false);
+		canvas.addShape(img2);
+
 
 	}
 	

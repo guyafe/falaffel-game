@@ -108,6 +108,7 @@ public class customer implements ShapeListener {
 	@Override
 	public void shapeClicked(String shapeID, int x, int y) {
 		if (this.selection==true){
+			Game.UI().canvas().hide(imgID);
 			content.customers().removeCustomer(shapeID);
 			playerListener.playerSuccessInServing();
 		}

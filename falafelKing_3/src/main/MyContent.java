@@ -12,6 +12,7 @@ import my_game.Topping;
 import my_game.Toppings;
 import my_game.BoardListener;
 import my_game.player;
+import my_game.Topping.top;
 import my_game.customers.customerLocation;
 import shapes.Image;
 import my_game.PlayerListener;
@@ -20,18 +21,25 @@ public class MyContent extends GameContent{
 	private board board;
 	private customers customers;
 	private player player;
-	private Toppings Toppings;
+	private Topping hummus;
+	private Topping salad;
+	private Topping fries;
+	private Topping falafel;
 	//TODO
 	//Declare your own character
 
 	@Override
 	public void initContent() {
+		// GameCanvas canvas = Game.UI().canvas();
+
 		this.board = new board();
 		this.player = new player("mor", (BoardListener)board);
 		this.customers = new customers((PlayerListener)player);
 		this.customers.setContent(this);
-		
-		// board.setLocation(new Point(100,100));	
+		this.falafel = new Topping(top.falafel);
+        this.salad = new Topping(top.Salad);
+        this.fries = new Topping(top.fries);
+        this.hummus = new Topping(top.hummus);
 	}	
 	public board board() {
 		return board;
@@ -41,8 +49,20 @@ public class MyContent extends GameContent{
 		return customers;
 	}
 
-	public Toppings Toppings() {
-		return Toppings;
+	public Topping salad() {
+		return salad;
+	}
+
+	public Topping fries() {
+		return fries;
+	}
+
+	public Topping hummus() {
+		return hummus;
+	}
+
+	public Topping falafel() {
+		return falafel;
 	}
 	public void addCharacter(int number) {
 		//TODO
@@ -67,9 +87,11 @@ public class MyContent extends GameContent{
 		//canvas.addShape(img);
 
 		Image img2 = new Image(customer.getImageID(),customer.getImage(),500,500,loc.xLocation(), loc.yLocation());
+		img2.setShapeListener(customer);
 		img2.setzOrder(3);
 		img2.setDraggable(false);
 		canvas.addShape(img2);
+
 
 	}
 	
