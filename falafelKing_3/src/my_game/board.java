@@ -49,20 +49,28 @@ public class board implements ShapeListener,BoardListener {
 		return this.falafelAmount;
 	}
 
-	public void reduceHummus(int amount){
-		 this.hummusAmount--;
+	public void reduceHummus(){
+		if (this.hummusAmount>0){ 
+		this.hummusAmount--;
+		}
 	}
 
-	public void reducesalad(int amount){
-		 this.saladAmount--;
+	public void reducesalad(){
+		if(this.saladAmount>0){
+		this.saladAmount--;
+		}
 	}
 
-	public void reducefries(int amount){
-		 this.friesAmount--;
+	public void reducefries(){
+		if(this.friesAmount>0){
+		this.friesAmount--;
+		}
 	}
 
-	public void reducefalafel(int amount){
-		 this.falafelAmount--;
+	public void reducefalafel(){
+		if(this.falafelAmount>0){
+		this.falafelAmount--;
+		}
 	}
 
 	public boolean isComplete(){
