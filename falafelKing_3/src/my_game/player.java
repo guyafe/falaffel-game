@@ -30,10 +30,10 @@ public class player implements PlayerListener {
         }
     }
     public void playerSuccessInServing(){
-         this.score = this.score+50;
+         this.score = this.score+5;
      }
 
-     public void setScore(int diff){
+     public void changeScore(int diff){
          this.score+=diff;
      }
 

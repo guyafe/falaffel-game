@@ -17,7 +17,7 @@ public abstract class Shape {
 	private STATUS status;
 	private Color color = Color.red;
 	private int weight = 1;
-	private int zOrder = 1;
+	private int zOrder = 3;
 	private boolean isDraggable = false;
 
 	private ShapeListener shapeListener = null;

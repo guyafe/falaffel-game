@@ -130,15 +130,16 @@ public class Topping implements ShapeListener {
 
 			}
 			if(quant>0){  //מעדכן את הניקוד
-				content.player().setScore(5);
+				content.player().changeScore(1);
 			}
 			else{
-				content.player().setScore(-5);
+				content.player().changeScore(-1);
 			}
 			content.score().getLabel().setText(String.valueOf(content.player().getScore()));
 		}
 		if(content.board().isComplete()==true){
 			content.customers().changeSelection(true);
+			Game.UI().canvas().show("full");
 		}
 		setVisibility(this.quantity>0);
 	}

@@ -20,27 +20,32 @@ public class MyPeriodicLoop extends PeriodicLoop {
 		// Let the super class do its work first
 		super.execute();
 		int counter=0;
-		customer[] c =content.customers().getCustomers();
-
-		for (int j = 0; j < c.length; j++) {//בודק אם יש תאים ריקים במערך הלקוחות ורק אם כן אז מפעיל את הפונקציה של הוספה
-			if(c[j]==null){
-				counter++;
+		customer[] c = content.customers().getCustomers();
+		int delay = content.board().getDelay();
+		int currentDelay = content.board().getCurrentDelay();
+		if(currentDelay<delay){
+			content.board().setCurrentDelay(currentDelay+1);
+		}
+		else{
+			for (int j = 0; j < c.length; j++) {//בודק אם יש תאים ריקים במערך הלקוחות ורק אם כן אז מפעיל את הפונקציה של הוספה
+				if(c[j]==null){
+					counter++;
+				}
 			}
-		}
-		if(counter>0){
-			this.content.customers().addCustomer();
-		}
-
-		
+			if(counter>0){
+				this.content.customers().addCustomer();
+			}
+			content.board().setCurrentDelay(0);
+			if(delay==0){
+				content.board().setDelay(delay-1);
+			}
+	}
 		//TODO
 		//Redraw your character periodically by calling the correct method
 		
 	}
 	
-	private void redrawPokimon() {
-		
-		// Game.UI().canvas().moveToLocation("pokimon", content.board().getLocation().x, content.board().getLocation().y);
-	}
+
 
 	private void redrawCharacter() {
 		

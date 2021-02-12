@@ -18,6 +18,8 @@ public class board implements ShapeListener,BoardListener {
 	private int falafelAmount;
 	private int friesAmount;
 	private final int maxAmount=3;
+	private int delay=5;
+	private int currentDelay=0;
 	
 	
 	public board() {//הגדרנו מקבל מהמחלקה שחקן שמקבל את הנתונים הרלוונטיים - צריך אחר כך לשלב את זה במחלקת הלוח//
@@ -46,6 +48,24 @@ public class board implements ShapeListener,BoardListener {
 
 		txt =(TextLabel) Game.UI().canvas().getShape("falafelAmount");
 		txt.getLabel().setText(String.valueOf(this.falafelAmount)); 
+
+		Game.UI().canvas().hide("full");
+	}
+
+	public int getDelay(){
+		return this.delay;
+	}
+
+	public int getCurrentDelay(){
+		return this.currentDelay;
+	}
+
+	public void setDelay(int delay){
+		this.delay=delay;
+	}
+
+	public void setCurrentDelay(int currentDelay){
+		this.currentDelay=currentDelay;
 	}
 
 	public int getHummusAmount(){
@@ -98,9 +118,13 @@ public class board implements ShapeListener,BoardListener {
 		}
 		return false;
 	}
-	   public void playerLostTheGame(){
 
-	   }//המימוש של הפונקציה יהיה ציור על המסך שנגמר - הליסטנר של הבורד// 
+
+
+
+	public void playerLostTheGame(){
+
+	}//המימוש של הפונקציה יהיה ציור על המסך שנגמר - הליסטנר של הבורד// 
 	   //צריך להוסיף תמונה של gameover//
 
 
