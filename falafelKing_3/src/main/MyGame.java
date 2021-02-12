@@ -118,7 +118,7 @@ public class MyGame extends Game {
 	public static void main(String[] args) {
 		MyGame game = new MyGame();
 		game.setGameContent(new MyContent());
-		PeriodicScheduler.periodicInterval = 1000;
+		PeriodicScheduler.periodicInterval = 200;
 		MyPeriodicLoop periodicLoop = new MyPeriodicLoop();
 		periodicLoop.setContent(game.getContent());
 		game.setPeriodicLoop(periodicLoop);

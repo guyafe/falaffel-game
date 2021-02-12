@@ -42,7 +42,7 @@ public class customers  {
 
 	private final int numOfCustomers=4;
 	private customer[] customers;
-	private boolean[] imageNum;
+	private boolean[] imageVisible;
 	private PlayerListener playerListener;
 
 	public customers (PlayerListener pListener){
@@ -50,9 +50,9 @@ public class customers  {
 		for (int i = 0; i < customers.length; i++) {
 			customers[i]=null;
 		}
-		imageNum = new boolean[5];
-		for (int i = 0; i < imageNum.length; i++) {
-			imageNum[i]=false;
+		imageVisible = new boolean[numOfCustomers];
+		for (int i = 0; i < imageVisible.length; i++) {
+			imageVisible[i]=false;
 		}
 		this.playerListener=pListener;
 	}
@@ -66,19 +66,25 @@ public class customers  {
 		while (customers[i]!=null) {
 			i=(int) ((Math.random())*numOfCustomers);
 		}
-		int j=(int) ((Math.random())*5);
-		while (imageNum[j]!=false) {
-			j=(int) ((Math.random())*5);
+		int j=(int) ((Math.random())*numOfCustomers);
+		while (imageVisible[j]!=false) {
+			j=(int) ((Math.random())*numOfCustomers);
 		}
 		this.customers[i]=new customer(String.valueOf(j),content.board().isComplete(), customerLocation.values()[i], playerListener, content);//לשנות את ה"אמת" לפונקציה שמקבלת אם המנה מוכנה
-		imageNum[j]=true;
+		imageVisible[j]=true;
 		content.addCharacter(i);
 	}
 
 	public void removeCustomer(String imgID){
-		int i = Integer.valueOf(imgID);
-		this.customers[i]=null;
-		this.imageNum[i]=false;
+		// int i = Integer.valueOf(imgID);
+		for (int i = 0; i < this.customers.length; i++) {
+			if(this.customers[i]!=null){
+				if(this.customers[i].getImageID()==imgID){
+					this.customers[i]=null;
+				}
+			}
+		}
+		this.imageVisible[Integer.valueOf(imgID)]=false;
 	}
 
 	public void changeSelection(boolean selection){

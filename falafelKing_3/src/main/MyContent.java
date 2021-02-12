@@ -133,7 +133,10 @@ public class MyContent extends GameContent{
 		img2.setShapeListener(customer);
 		img2.setzOrder(3);
 		img2.setDraggable(false);
-		canvas.addShape(img2);
+		// if(canvas.getShape(customer.getImageID())==null) {//בודק אם יש דמות קיימת במיקום
+			canvas.addShape(img2);
+		// }
+	
 
 
 	}
