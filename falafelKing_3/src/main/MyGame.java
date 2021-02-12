@@ -93,21 +93,12 @@ public class MyGame extends Game {
 
 		
 		//כמות התוספות במסך
-		shapes.TextLabel saladTXT = content.saladAmount();
-		canvas.addShape(saladTXT);
+		canvas.addShape(content.saladAmount());
+		canvas.addShape(content.hummusAmount());
+		canvas.addShape(content.friesAmount());
+		canvas.addShape(content.falafelAmount());
+		content.board().generateDish();
 
-		shapes.TextLabel hummusTXT = content.hummusAmount();
-		canvas.addShape(hummusTXT);
-
-		shapes.TextLabel friesTXT = content.friesAmount();
-		canvas.addShape(friesTXT);
-
-		shapes.TextLabel falafelTXT = content.falafelAmount();
-		canvas.addShape(falafelTXT);
-
-
-
-		
 
 
 	}

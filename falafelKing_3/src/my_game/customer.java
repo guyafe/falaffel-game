@@ -11,6 +11,7 @@ import my_game.customers.customerLocation;
 import game.Game;
 import game.PeriodicLoop;
 import shapes.Image;
+import shapes.TextLabel;
 
 public class customer implements ShapeListener {
 
@@ -94,8 +95,8 @@ public class customer implements ShapeListener {
 		return this.location;
 	}
 
-	public void switchSelection(){
-		this.selection=!this.selection;
+	public void changeSelection(boolean selection){
+		this.selection=selection;
 	}
 
 	public level upLevel(){
@@ -116,6 +117,12 @@ public class customer implements ShapeListener {
 			content.customers().removeCustomer(shapeID);
 			playerListener.playerSuccessInServing();
 			content.score().getLabel().setText(String.valueOf(content.player().getScore()));
+			content.customers().changeSelection(false);
+			content.board().generateDish();
+
+
+
+
 		}
 
 	}

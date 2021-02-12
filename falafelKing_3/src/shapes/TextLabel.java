@@ -15,7 +15,7 @@ public class TextLabel extends Shape {
 	private int posX;
 	private int posY;
 	private String fontName = "Ariel";
-	private int fontSize = 12;
+	private int fontSize = 35;
 
 	
 	public TextLabel (String id, String txt, int posX, int posY) {
@@ -25,6 +25,7 @@ public class TextLabel extends Shape {
 		text = txt;
 		this.posX = posX;
 		this.posY = posY;
+		adjustFont();
 	}
 	
 	private void adjustFont() {

@@ -38,39 +38,24 @@ public class MyContent extends GameContent{
 	public void initContent() {
 		// GameCanvas canvas = Game.UI().canvas();
 
-		this.board = new board();
+		
 		this.player = new player("mor", (BoardListener)board);//לעשות אולי שאפשר להזין את השם שחקן
 		this.customers = new customers((PlayerListener)player);
 		this.customers.setContent(this);
-		this.falafel = new Topping(top.falafel);
-        this.salad = new Topping(top.Salad);
-        this.fries = new Topping(top.fries);
-        this.hummus = new Topping(top.hummus);
+		this.falafel = new Topping(top.falafel, this);
+        this.salad = new Topping(top.salad, this);
+        this.fries = new Topping(top.fries, this);
+        this.hummus = new Topping(top.hummus, this);
 
 		this.score = new shapes.TextLabel("score", "10", 80, 30);
 		score.setFontSize(40);
-		score.setzOrder(3);
-		score.setDraggable(false);
 
-		this.hummusAmount = new shapes.TextLabel("hummusamount",String.valueOf(board.getHummusAmount()), 400, 440);
-		hummusAmount.setFontSize(35);
-		hummusAmount.setzOrder(3);
-		hummusAmount.setDraggable(false);
-
+		this.board = new board();
+		this.hummusAmount = new shapes.TextLabel("hummusAmount",String.valueOf(board.getHummusAmount()), 400, 440);
 		this.saladAmount = new shapes.TextLabel("saladAmount",String.valueOf(board.getSaladAmount()), 400, 370);
-		saladAmount.setFontSize(35);
-		saladAmount.setzOrder(3);
-		saladAmount.setDraggable(false);
-
 		this.friesAmount = new shapes.TextLabel("friesAmount",String.valueOf(board.getFriesAmount()), 210, 350);
-		friesAmount.setFontSize(35);
-		friesAmount.setzOrder(3);
-		friesAmount.setDraggable(false);
-
 		this.falafelAmount = new shapes.TextLabel("falafelAmount",String.valueOf(board.getFalafelAmount()), 180, 430);
-		falafelAmount.setFontSize(35);
-		falafelAmount.setzOrder(3);
-		falafelAmount.setDraggable(false);
+
 		
 
 	}	
@@ -144,7 +129,7 @@ public class MyContent extends GameContent{
 		//Image img = new Image(, , 220, 430, loc.xLocation(), loc.yLocation());
 		//canvas.addShape(img);
 
-		Image img2 = new Image(customer.getImageID(),customer.getImage(),500,500,loc.xLocation(), loc.yLocation());
+		Image img2 = new Image(customer.getImageID(),customer.getImage(),200,300,loc.xLocation(), loc.yLocation());
 		img2.setShapeListener(customer);
 		img2.setzOrder(3);
 		img2.setDraggable(false);

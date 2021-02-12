@@ -4,9 +4,11 @@ import javax.imageio.ImageIO;
 
 import DB.ExcelTable;
 import game.ShapeListener;
+import main.MyContent;
 import game.Game;
 import game.PeriodicLoop;
 import shapes.Image;
+import shapes.TextLabel;
 
 public class board implements ShapeListener,BoardListener {
 	private final String sprayImage;
@@ -17,9 +19,10 @@ public class board implements ShapeListener,BoardListener {
 	private int friesAmount;
 	private final int maxAmount=3;
 	
-	public board() {//הגדרנו מקבל מהמחלקה שחקן שמקבל את הנתונים הרלוונטיים - צריך אחר כך לשלב את זה במחלקת הלוח//
 	
-		generateDish();
+	public board() {//הגדרנו מקבל מהמחלקה שחקן שמקבל את הנתונים הרלוונטיים - צריך אחר כך לשלב את זה במחלקת הלוח//
+		
+		// generateDish();
 		
 		// costomers... (myplayer)
 	   this.sprayImage = "resources/1.png";
@@ -31,6 +34,18 @@ public class board implements ShapeListener,BoardListener {
 		this.saladAmount=(int) ((Math.random())*this.maxAmount)+1;
 		this.friesAmount=(int) ((Math.random())*this.maxAmount)+1;
 		this.hummusAmount=(int) ((Math.random())*this.maxAmount)+1;
+
+		TextLabel txt =(TextLabel) Game.UI().canvas().getShape("hummusAmount");
+		txt.getLabel().setText(String.valueOf(this.hummusAmount)); 
+
+		txt =(TextLabel) Game.UI().canvas().getShape("saladAmount");
+		txt.getLabel().setText(String.valueOf(this.saladAmount)); 
+
+		txt =(TextLabel) Game.UI().canvas().getShape("friesAmount");
+		txt.getLabel().setText(String.valueOf(this.friesAmount)); 
+
+		txt =(TextLabel) Game.UI().canvas().getShape("falafelAmount");
+		txt.getLabel().setText(String.valueOf(this.falafelAmount)); 
 	}
 
 	public int getHummusAmount(){
@@ -49,28 +64,32 @@ public class board implements ShapeListener,BoardListener {
 		return this.falafelAmount;
 	}
 
-	public void reduceHummus(){
+	public int reduceHummus(){
 		if (this.hummusAmount>0){ 
 		this.hummusAmount--;
 		}
+		return this.hummusAmount;
 	}
 
-	public void reducesalad(){
+	public int reduceSalad(){
 		if(this.saladAmount>0){
 		this.saladAmount--;
 		}
+		return this.saladAmount;
 	}
 
-	public void reducefries(){
+	public int reduceFries(){
 		if(this.friesAmount>0){
 		this.friesAmount--;
 		}
+		return this.friesAmount;
 	}
 
-	public void reducefalafel(){
+	public int reduceFalafel(){
 		if(this.falafelAmount>0){
 		this.falafelAmount--;
 		}
+		return this.falafelAmount;
 	}
 
 	public boolean isComplete(){

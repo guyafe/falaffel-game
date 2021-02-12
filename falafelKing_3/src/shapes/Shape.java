@@ -18,7 +18,7 @@ public abstract class Shape {
 	private Color color = Color.red;
 	private int weight = 1;
 	private int zOrder = 1;
-	private boolean isDraggable = true;
+	private boolean isDraggable = false;
 
 	private ShapeListener shapeListener = null;
 	

@@ -24,12 +24,17 @@ public class player implements PlayerListener {
    
     public void customerLostPatience(){
         lives = lives-1;
-        if (lives==0)
-        {boardListener.playerLostTheGame();
+        this.score-=50;
+        if (lives==0){
+            boardListener.playerLostTheGame();
         }
     }
     public void playerSuccessInServing(){
          this.score = this.score+50;
+     }
+
+     public void setScore(int diff){
+         this.score+=diff;
      }
 
 }

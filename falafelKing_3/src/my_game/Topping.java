@@ -5,6 +5,7 @@ import game.MouseHandler;
 import game.Game;
 import game.PeriodicLoop;
 import shapes.Image;
+import shapes.TextLabel;
 import game.ShapeListener;
 import gui.GameCanvas;
 import main.MyContent;
@@ -15,7 +16,7 @@ public class Topping implements ShapeListener {
 
 	public enum top{
 		falafel (300,510),  //סתם ערכים כרגע. לשנות ככה שיתאים בלוח
-		Salad (490,410),
+		salad (490,410),
 		fries (300,410),
 		hummus (500,510);
 		private final int xLocation, yLocation;
@@ -43,14 +44,16 @@ public class Topping implements ShapeListener {
 	private final int initialQuantity=10;
 	private int quantity;
 	private boolean visible;
+	private MyContent content;
 	// private GameCanvas canvas;
 
-	public Topping(top location) {
+	public Topping(top location,  MyContent content) {
 		this.location=location;
 		this.imgID = location.toString();
 		img="resources/" + imgID +".png";
 		this.quantity = this.initialQuantity;
 		this.visible=true;	
+		this.content=content;
 		// this.canvas = canvas;
 		// Image img2 = new Image(this.imgID,this.img,100,100,this.location.xLocation(), this.location.yLocation());
 		// // img2.setShapeListener(listener);
@@ -84,13 +87,13 @@ public class Topping implements ShapeListener {
 		return this.visible;
 	}
 	
-	public void setVisibility(Boolean visible,GameCanvas canvas) {
+	public void setVisibility(Boolean visible) {
 		this.visible = visible;
 		if(this.visible==true){
-			canvas.show(this.imgID);
+			Game.UI().canvas().show(this.imgID);
 		}
 		else {
-			canvas.hide(imgID);
+			Game.UI().canvas().hide(imgID);
 		}
 		
 	}
@@ -100,15 +103,44 @@ public class Topping implements ShapeListener {
 	}
 
 	public void reduceQuantity(){
-		this.quantity = this.quantity--;
+		this.quantity--;
 	}
 	
 	@Override
 	public void shapeClicked(String shapeID, int x, int y) {
+		int quant;
 		if (this.visible==true){
-			reduceQuantity();
-		//גם שיוריד מהכמות שנדרשת להכין מנה
+			reduceQuantity(); //מחסר מהכמות שיש במלאי
+			TextLabel txt =(TextLabel) Game.UI().canvas().getShape(shapeID+"Amount");
+			if(shapeID=="salad"){   //מחסיר 1 מהכמות שנשארה כדי להשלים מנה ומציג
+				quant=content.board().getSaladAmount();
+				txt.getLabel().setText(String.valueOf(content.board().reduceSalad()));
+			}
+			else if(shapeID=="fries"){
+				quant=content.board().getFriesAmount();
+				txt.getLabel().setText(String.valueOf(content.board().reduceFries()));
+			}
+			else if(shapeID=="falafel"){
+				quant=content.board().getFalafelAmount();
+				txt.getLabel().setText(String.valueOf(content.board().reduceFalafel()));
+			}
+			else{
+				quant=content.board().getHummusAmount();
+				txt.getLabel().setText(String.valueOf(content.board().reduceHummus())); 
+
+			}
+			if(quant>0){  //מעדכן את הניקוד
+				content.player().setScore(5);
+			}
+			else{
+				content.player().setScore(-5);
+			}
+			content.score().getLabel().setText(String.valueOf(content.player().getScore()));
 		}
+		if(content.board().isComplete()==true){
+			content.customers().changeSelection(true);
+		}
+		setVisibility(this.quantity>0);
 	}
 
 
