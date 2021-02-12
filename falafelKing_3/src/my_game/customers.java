@@ -10,11 +10,11 @@ import shapes.Image;
 public class customers  {
 
 	public enum customerLocation{
-		a (300,200),  //סתם ערכים כרגע. לשנות ככה שיתאים בלוח
-		b (400,200),
-		c (500,200),
-		d (600,200),
-		e (700,200);
+		a (260,200),  //סתם ערכים כרגע. לשנות ככה שיתאים בלוח
+		b (410,200),
+		c (560,200),
+		d (710,200);
+		// e (700,200);
 		private final int xLocation, yLocation;
 		private customerLocation(int xLocation, int yLocation) {
 			this.xLocation = xLocation;
@@ -40,7 +40,7 @@ public class customers  {
 		this.content = content;
 	}
 
-	private final int numOfCustomers=5;
+	private final int numOfCustomers=4;
 	private customer[] customers;
 	private boolean[] imageNum;
 	private PlayerListener playerListener;
@@ -50,7 +50,7 @@ public class customers  {
 		for (int i = 0; i < customers.length; i++) {
 			customers[i]=null;
 		}
-		imageNum = new boolean[numOfCustomers];
+		imageNum = new boolean[5];
 		for (int i = 0; i < imageNum.length; i++) {
 			imageNum[i]=false;
 		}
@@ -70,7 +70,7 @@ public class customers  {
 		while (imageNum[j]!=false) {
 			j=(int) ((Math.random())*5);
 		}
-		this.customers[i]=new customer(String.valueOf(j),true, customerLocation.values()[i], playerListener, content);//לשנות את ה"אמת" לפונקציה שמקבלת אם המנה מוכנה
+		this.customers[i]=new customer(String.valueOf(j),content.board().isComplete(), customerLocation.values()[i], playerListener, content);//לשנות את ה"אמת" לפונקציה שמקבלת אם המנה מוכנה
 		imageNum[j]=true;
 		content.addCharacter(i);
 	}
@@ -83,7 +83,9 @@ public class customers  {
 
 	public void changeSelection(boolean selection){
 		for (int i = 0; i < customers.length; i++) {
-			this.customers[i].switchSelection();
+			if(this.customers[i]!=null){
+				this.customers[i].changeSelection(selection);
+			}
 		}
 	}
 
