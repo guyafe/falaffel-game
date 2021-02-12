@@ -44,6 +44,7 @@ public class MyGame extends Game {
         }*/
 		Image img = new Image("bg","resources/background.png",1600,1200,410,300);
 		img.setDraggable(false);
+		img.setzOrder(1);
 		canvas.addShape(img);
 		/*
 		Image img2 = new Image("2","resources/2.png",500,500,200,300);
@@ -59,32 +60,24 @@ public class MyGame extends Game {
 		
 		//מציג את התמונות של התוספות
 		Topping salad = content.salad();
-		Image img2 = new Image(salad.getImageID(),salad.getImage(),150,90,salad.getLocation().xLocation(), salad.getLocation().yLocation());
-		img2.setShapeListener(salad);
-		img2.setzOrder(3);
-		img2.setDraggable(false);
-		canvas.addShape(img2);
+		img = new Image(salad.getImageID(),salad.getImage(),150,90,salad.getLocation().xLocation(), salad.getLocation().yLocation());
+		img.setShapeListener(salad);
+		canvas.addShape(img);
 		
 		Topping hummus = content.hummus();
-		img2 = new Image(hummus.getImageID(),hummus.getImage(),200,90,hummus.getLocation().xLocation(), hummus.getLocation().yLocation());
-		img2.setShapeListener(hummus);
-		img2.setzOrder(3);
-		img2.setDraggable(false);
-		canvas.addShape(img2);
+		img = new Image(hummus.getImageID(),hummus.getImage(),200,90,hummus.getLocation().xLocation(), hummus.getLocation().yLocation());
+		img.setShapeListener(hummus);
+		canvas.addShape(img);
 
 		Topping fries = content.fries();
-		img2 = new Image(fries.getImageID(),fries.getImage(),200,90,fries.getLocation().xLocation(), fries.getLocation().yLocation());
-		img2.setShapeListener(fries);
-		img2.setzOrder(3);
-		img2.setDraggable(false);
-		canvas.addShape(img2);
+		img = new Image(fries.getImageID(),fries.getImage(),200,90,fries.getLocation().xLocation(), fries.getLocation().yLocation());
+		img.setShapeListener(fries);
+		canvas.addShape(img);
 
 		Topping falafel = content.falafel();
-		img2 = new Image(falafel.getImageID(),falafel.getImage(),200,100,falafel.getLocation().xLocation(), falafel.getLocation().yLocation());
-		img2.setShapeListener(falafel);
-		img2.setzOrder(3);
-		img2.setDraggable(false);
-		canvas.addShape(img2);
+		img = new Image(falafel.getImageID(),falafel.getImage(),200,100,falafel.getLocation().xLocation(), falafel.getLocation().yLocation());
+		img.setShapeListener(falafel);
+		canvas.addShape(img);
 
 		//מציג את הניקוד של השחקן
 		shapes.TextLabel scoreTXT = content.score();
@@ -99,7 +92,10 @@ public class MyGame extends Game {
 		canvas.addShape(content.falafelAmount());
 		content.board().generateDish();
 
-
+		// תמונה של פיתה מלאה. מוסתרת כל עוד לא השלימו מנה
+		img = new Image("full","resources/full.png",255,127,686,520);
+		canvas.addShape(img);
+		canvas.hide("full");
 
 	}
 	
@@ -122,7 +118,7 @@ public class MyGame extends Game {
 	public static void main(String[] args) {
 		MyGame game = new MyGame();
 		game.setGameContent(new MyContent());
-		PeriodicScheduler.periodicInterval = 5000;
+		PeriodicScheduler.periodicInterval = 1000;
 		MyPeriodicLoop periodicLoop = new MyPeriodicLoop();
 		periodicLoop.setContent(game.getContent());
 		game.setPeriodicLoop(periodicLoop);
