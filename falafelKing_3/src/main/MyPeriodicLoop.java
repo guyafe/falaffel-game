@@ -25,6 +25,7 @@ public class MyPeriodicLoop extends PeriodicLoop {
 		customer[] c = content.customers().getCustomers();
 		int delay = content.board().getDelay();
 		int currentDelay = content.board().getCurrentDelay();
+
 		if(currentDelay<delay){
 			content.board().setCurrentDelay(currentDelay+1);
 			// if(currentDelay!=0 && delay/currentDelay==2){
@@ -42,12 +43,28 @@ public class MyPeriodicLoop extends PeriodicLoop {
 		else{
 			
 			for (int i = 0; i < c.length; i++) {
-				if(c[i]!=null && c[i].getPatience().ordinal()<5){
+				if(c[i]!=null){
+					if(c[i].getPatience().ordinal()<5){
+							c[i].upLevel();
+							Game.UI().canvas().hide(c[i].getImageID()+"patience");
+							Game.UI().canvas().changeImage(c[i].getImageID()+"patience", c[i].getPatienceIMG(), 50, 50);
+							Game.UI().canvas().show(c[i].getImageID()+"patience");
+						
+					}
+					else if (c[i].getLeavingCounter()==3){
+						Game.UI().canvas().deleteShape(c[i].getImageID());
+						Game.UI().canvas().deleteShape(c[i].getImageID()+"patience");
+						// c.removeCustomer(c[i].getImageID());
 						c[i].upLevel();
-						Game.UI().canvas().hide(c[i].getImageID()+"patience");
-						Game.UI().canvas().changeImage(c[i].getImageID()+"patience", c[i].getPatienceIMG(), 50, 50);
-						Game.UI().canvas().show(c[i].getImageID()+"patience");
-					
+						content.customers().removeCustomer(c[i].getImageID());
+						// playerListener.playerSuccessInServing();
+						content.score().getLabel().setText(String.valueOf(content.player().getScore()));
+						content.lives().getLabel().setText(String.valueOf(content.player().getLives()));
+						
+					}
+					else{
+						c[i].increaseLeavingCounter();
+					}
 				}
 			}
 			for (int j = 0; j < c.length; j++) {//בודק אם יש תאים ריקים במערך הלקוחות ורק אם כן אז מפעיל את הפונקציה של הוספה
@@ -55,7 +72,7 @@ public class MyPeriodicLoop extends PeriodicLoop {
 					counter++;
 				}
 			}
-			if(counter>0){
+			if(counter>0 && content.player().getLives()!=0){
 				this.content.customers().addCustomer();
 			}
 			content.board().setCurrentDelay(0);
@@ -63,6 +80,7 @@ public class MyPeriodicLoop extends PeriodicLoop {
 				content.board().setDelay(delay-1);
 			}
 		}
+		
 	
 		//TODO
 		//Redraw your character periodically by calling the correct method

@@ -24,9 +24,6 @@ public class board implements ShapeListener,BoardListener {
 	
 	public board() {//הגדרנו מקבל מהמחלקה שחקן שמקבל את הנתונים הרלוונטיים - צריך אחר כך לשלב את זה במחלקת הלוח//
 		
-		// generateDish();
-		
-		// costomers... (myplayer)
 	   this.sprayImage = "resources/1.png";
 	   this.sprayImageID = "spray"; 
 	}
@@ -122,7 +119,10 @@ public class board implements ShapeListener,BoardListener {
 
 
 
-	public void playerLostTheGame(){
+	public void playerLostTheGame(){//למה צריך את זה?
+		Game.UI().canvas().deleteShape("lives");
+		Image img = new Image("over", "resources/game_over.jpg", 500, 500, 200, 300);
+		Game.UI().canvas().addShape(img);
 
 	}//המימוש של הפונקציה יהיה ציור על המסך שנגמר - הליסטנר של הבורד// 
 	   //צריך להוסיף תמונה של gameover//

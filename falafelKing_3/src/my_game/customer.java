@@ -40,18 +40,17 @@ public class customer implements ShapeListener {
 	private final String img;
 	private final String imgID;
 	private final customerLocation location;
-	private level patience;
-	private String patienceIMG;
+	private level patience = level.none;
+	private String patienceIMG = patience.getBar();
 	private boolean selection;
 	private PlayerListener playerListener;
 	private MyContent content;
+	private int leavingCounter=0;
 	
 	public customer(String imgID, boolean selection, customerLocation location, PlayerListener pListener, MyContent content){
 		this.imgID=imgID;
 		this.img="resources/" +imgID+".png";
 		this.selection=selection;
-		this.patience = level.none;
-		this.patienceIMG =patience.getBar();
 		this.location = location;
 		this.playerListener = pListener;
 		this.content=content;
@@ -86,6 +85,19 @@ public class customer implements ShapeListener {
 
 	public boolean getSelection() {
 		return this.selection;
+	}
+
+	public int getLeavingCounter() {
+		return this.leavingCounter;
+	}
+
+	public void setLeavingCounter (int counter){
+		this.leavingCounter=counter;
+
+	}
+	public void increaseLeavingCounter (){
+		this.leavingCounter++;
+
 	}
 
 	public customerLocation getCustomerLocation() {

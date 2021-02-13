@@ -28,6 +28,7 @@ public class MyContent extends GameContent{
 	private Topping fries;
 	private Topping falafel;
 	private shapes.TextLabel score;
+	private shapes.TextLabel lives;
 	private shapes.TextLabel hummusAmount;
 	private shapes.TextLabel saladAmount;
 	private shapes.TextLabel friesAmount;
@@ -52,11 +53,18 @@ public class MyContent extends GameContent{
 		this.score = new shapes.TextLabel("score", "10", 170, 130);
 		score.setFontSize(40);
 
+		this.lives = new shapes.TextLabel("lives", "10", 900, 130);
+		lives.setFontSize(40);
+
 		this.board = new board();
 		this.hummusAmount = new shapes.TextLabel("hummusAmount",String.valueOf(board.getHummusAmount()), 490, 540);
+		hummusAmount.setzOrder(1);
 		this.saladAmount = new shapes.TextLabel("saladAmount",String.valueOf(board.getSaladAmount()), 490, 470);
+		saladAmount.setzOrder(1);
 		this.friesAmount = new shapes.TextLabel("friesAmount",String.valueOf(board.getFriesAmount()), 300, 450);
+		friesAmount.setzOrder(1);
 		this.falafelAmount = new shapes.TextLabel("falafelAmount",String.valueOf(board.getFalafelAmount()), 270, 530);
+		falafelAmount.setzOrder(1);
 
 		this.seller = new refill(this);
 		
@@ -108,6 +116,10 @@ public class MyContent extends GameContent{
 
 	public TextLabel score() {
 		return score;
+	}
+
+	public TextLabel lives() {
+		return lives;
 	}
 
 	public refill seller(){

@@ -82,7 +82,14 @@ public class MyGame extends Game {
 		//מציג את הניקוד של השחקן
 		shapes.TextLabel scoreTXT = content.score();
 		scoreTXT.getLabel().setText(String.valueOf(content.player().getScore()));
+		scoreTXT.setzOrder(1);
 		canvas.addShape(scoreTXT);
+
+		//מציג את החיים הנותרים לשחקן
+		shapes.TextLabel livesTXT = content.lives();
+		livesTXT.getLabel().setText(String.valueOf(content.player().getLives()));
+		livesTXT.setzOrder(1);
+		canvas.addShape(livesTXT);
 
 		
 		//כמות התוספות במסך
@@ -125,7 +132,7 @@ public class MyGame extends Game {
 	public static void main(String[] args) {
 		MyGame game = new MyGame();
 		game.setGameContent(new MyContent());
-		PeriodicScheduler.periodicInterval = 200;
+		PeriodicScheduler.periodicInterval = 20;
 		MyPeriodicLoop periodicLoop = new MyPeriodicLoop();
 		periodicLoop.setContent(game.getContent());
 		game.setPeriodicLoop(periodicLoop);
