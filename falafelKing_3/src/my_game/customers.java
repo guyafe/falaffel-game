@@ -10,10 +10,10 @@ import shapes.Image;
 public class customers  {
 
 	public enum customerLocation{
-		a (260,200),  //סתם ערכים כרגע. לשנות ככה שיתאים בלוח
-		b (410,200),
-		c (560,200),
-		d (710,200);
+		a (350,300),  //סתם ערכים כרגע. לשנות ככה שיתאים בלוח
+		b (500,300),
+		c (650,300),
+		d (800,300);
 		// e (700,200);
 		private final int xLocation, yLocation;
 		private customerLocation(int xLocation, int yLocation) {
@@ -71,8 +71,9 @@ public class customers  {
 			j=(int) ((Math.random())*numOfCustomers);
 		}
 		this.customers[i]=new customer(String.valueOf(j),content.board().isComplete(), customerLocation.values()[i], playerListener, content);//לשנות את ה"אמת" לפונקציה שמקבלת אם המנה מוכנה
-		imageVisible[j]=true;
+		this.imageVisible[j]=true;
 		content.addCharacter(i);
+
 	}
 
 	public void removeCustomer(String imgID){

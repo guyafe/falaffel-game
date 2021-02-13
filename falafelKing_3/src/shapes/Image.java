@@ -28,6 +28,11 @@ public class Image extends Shape {
 		setRotation(0);
 	}
 	
+	public void setBound(int width, int height) {
+		this.boundingWidth=width;
+		this.boundingHeight=height;
+	}
+
 	public int getWidth() {
 		return width;
 	}

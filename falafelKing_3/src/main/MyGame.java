@@ -18,6 +18,7 @@ import gui.GameCanvas;
 import gui.GameDashboard;
 import my_game.Topping;
 import my_game.board;
+import my_game.refill;
 import my_game.Topping.top;
 import shapes.Circle;
 import shapes.Image;
@@ -42,8 +43,7 @@ public class MyGame extends Game {
         } catch (IOException e) {
             e.printStackTrace();
         }*/
-		Image img = new Image("bg","resources/background.png",1600,1200,410,300);
-		img.setDraggable(false);
+		Image img = new Image("bg","resources/background.png",812,1200,500,400);
 		img.setzOrder(1);
 		canvas.addShape(img);
 		/*
@@ -93,9 +93,16 @@ public class MyGame extends Game {
 		content.board().generateDish();
 
 		// תמונה של פיתה מלאה. מוסתרת כל עוד לא השלימו מנה
-		img = new Image("full","resources/full.png",255,127,686,520);
+		img = new Image("full","resources/full.png",255,127,776,620);
 		canvas.addShape(img);
 		canvas.hide("full");
+
+		refill seller = content.seller();
+		// img = new Image(seller.getImageID(),seller.getImage(),500,500,98, 402);
+		img = new Image(seller.getImageID(),seller.getImage(),130,280,188, 502);
+		img.setShapeListener(seller);
+		img.setzOrder(4);
+		canvas.addShape(img);
 
 	}
 	
@@ -118,7 +125,7 @@ public class MyGame extends Game {
 	public static void main(String[] args) {
 		MyGame game = new MyGame();
 		game.setGameContent(new MyContent());
-		PeriodicScheduler.periodicInterval = 200;
+		PeriodicScheduler.periodicInterval = 600;
 		MyPeriodicLoop periodicLoop = new MyPeriodicLoop();
 		periodicLoop.setContent(game.getContent());
 		game.setPeriodicLoop(periodicLoop);

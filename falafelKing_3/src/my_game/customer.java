@@ -2,8 +2,6 @@
 //מחר נגמר הסגר אז בסדר//
 package my_game;
 
-import javax.swing.text.AbstractDocument.Content;
-
 import DB.ExcelTable;
 import game.ShapeListener;
 import main.MyContent;

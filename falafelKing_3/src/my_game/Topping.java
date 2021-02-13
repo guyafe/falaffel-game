@@ -15,10 +15,10 @@ public class Topping implements ShapeListener {
 	// private MyContent content = new MyContent();
 
 	public enum top{
-		falafel (300,510),  //סתם ערכים כרגע. לשנות ככה שיתאים בלוח
-		salad (490,410),
-		fries (300,410),
-		hummus (500,510);
+		falafel (390,610),  //סתם ערכים כרגע. לשנות ככה שיתאים בלוח
+		salad (580,510),
+		fries (390,510),
+		hummus (590,610);
 		private final int xLocation, yLocation;
 		private top(int xLocation, int yLocation) {
 			this.xLocation = xLocation;
@@ -35,6 +35,7 @@ public class Topping implements ShapeListener {
 				return null;
 			}
 			return top.values()[this.ordinal()+1]; //לוודא שעובד
+			
 		}
     }
 	
@@ -53,13 +54,7 @@ public class Topping implements ShapeListener {
 		img="resources/" + imgID +".png";
 		this.quantity = this.initialQuantity;
 		this.visible=true;	
-		this.content=content;
-		// this.canvas = canvas;
-		// Image img2 = new Image(this.imgID,this.img,100,100,this.location.xLocation(), this.location.yLocation());
-		// // img2.setShapeListener(listener);
-		// img2.setzOrder(3);
-		// img2.setDraggable(false);
-		// canvas.addShape(img2);	
+		this.content=content;	
 	}
 
 	public top getLocation() {
@@ -100,6 +95,7 @@ public class Topping implements ShapeListener {
 	
 	public void refill(){
 		this.quantity = this.initialQuantity;
+		this.setVisibility(true);
 	}
 
 	public void reduceQuantity(){
