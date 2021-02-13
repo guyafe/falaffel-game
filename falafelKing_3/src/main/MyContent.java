@@ -133,16 +133,22 @@ public class MyContent extends GameContent{
 		*/
 		customer customer = this.customers.getCustomers()[number];
 		customerLocation loc = customer.getCustomerLocation();
-		//Image img = new Image(, , 220, 430, loc.xLocation(), loc.yLocation());
-		//canvas.addShape(img);
 
-		Image img2 = new Image(customer.getImageID(),customer.getImage(),200,300,loc.xLocation(), loc.yLocation());
-		img2.setShapeListener(customer);
-		img2.setzOrder(3);
-		img2.setDraggable(false);
-		// if(canvas.getShape(customer.getImageID())==null) {//בודק אם יש דמות קיימת במיקום
-			canvas.addShape(img2);
-		// }
+		Image img = new Image(customer.getImageID(),customer.getImage(),200,300,loc.xLocation(), loc.yLocation());
+		img.setShapeListener(customer);
+		canvas.addShape(img);
+		int y;
+		int x= Integer.valueOf(customer.getImageID());//למה לעזאזל הייתי צריך להמיר לint???
+		if(x==1 || x==2){
+			y = loc.yLocation()-200;
+		}
+		else {
+			y = loc.yLocation()-100;
+		}
+		img = new Image(customer.getImageID()+customer.getPatience().toString(),customer.getPatienceIMG(),500,100,loc.xLocation(), y);
+		img.setzOrder(4);
+		canvas.addShape(img);
+	
 	
 
 

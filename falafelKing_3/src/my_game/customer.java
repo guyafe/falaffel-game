@@ -13,8 +13,6 @@ import shapes.TextLabel;
 
 public class customer implements ShapeListener {
 
-	
-
 	public enum level{
 		none ("resources/none.png"),
 		veryLow ("resources/very_low.png"),
@@ -112,6 +110,7 @@ public class customer implements ShapeListener {
 	public void shapeClicked(String shapeID, int x, int y) {
 		if (this.selection==true){
 			Game.UI().canvas().deleteShape(imgID);
+			Game.UI().canvas().deleteShape(imgID+this.patience.toString());
 			content.customers().removeCustomer(shapeID);
 			playerListener.playerSuccessInServing();
 			content.score().getLabel().setText(String.valueOf(content.player().getScore()));
