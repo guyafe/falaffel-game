@@ -1,5 +1,11 @@
 package my_game;
 
+import org.apache.poi.ss.usermodel.Color;
+
+import game.Game;
+import shapes.Image;
+import shapes.TextLabel;
+
 public class player implements PlayerListener {
     public String userName;
     public int score;
@@ -23,10 +29,10 @@ public class player implements PlayerListener {
     }
    
     public void customerLostPatience(){
-        lives = lives-1;
-        this.score-=50;
-        if (lives==0){
-            boardListener.playerLostTheGame();
+        this.lives--;
+        this.score-=5;
+        if (this.lives==0){
+            this.gameOver();
         }
     }
     public void playerSuccessInServing(){
@@ -35,6 +41,36 @@ public class player implements PlayerListener {
 
      public void changeScore(int diff){
          this.score+=diff;
+     }
+     public void gameOver (){
+        // boardListener.playerLostTheGame();
+        // Game.UI().canvas().getShape("lives").setzOrder(0);
+        Image img = new Image("over", "resources/game_over.png", 1000, 500, 500, 450);
+        img.setzOrder(6);
+        Game.UI().canvas().addShape(img);
+               
+        TextLabel txt = (TextLabel) Game.UI().canvas().getShape("score");
+        txt = new TextLabel("finalScore", "YOUR FINAL SCORE IS: "+txt.getLabel().getText(), 200, 600);
+        txt.setzOrder(6);
+        txt.setFontSize(45);
+        // txt.setFontName("david");
+        txt.getLabel().setForeground(java.awt.Color.black);
+		Game.UI().canvas().addShape(txt);
+
+        Game.UI().canvas().hide("lives");
+        Game.UI().canvas().hide("score");
+        Game.UI().canvas().hide("hummusAmount");
+        Game.UI().canvas().hide("saladAmount");
+        Game.UI().canvas().hide("friesAmount");
+        Game.UI().canvas().hide("falafelAmount");
+
+        for (int i = 0; i < 4; i++) {//לשנות את ה-4 למשהו יותר אסוציאטיבי
+            Game.UI().canvas().deleteShape(String.valueOf(i));
+            Game.UI().canvas().deleteShape(String.valueOf(i)+"patience"); 
+        }
+        
+        Game.endGame();
+        
      }
 
 }
