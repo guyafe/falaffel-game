@@ -6,6 +6,8 @@ import game.PeriodicLoop;
 import gui.GameCanvas;
 import my_game.customer;
 import my_game.customers;
+import my_game.customer.level;
+import shapes.Image;
 
 public class MyPeriodicLoop extends PeriodicLoop {
 
@@ -25,8 +27,29 @@ public class MyPeriodicLoop extends PeriodicLoop {
 		int currentDelay = content.board().getCurrentDelay();
 		if(currentDelay<delay){
 			content.board().setCurrentDelay(currentDelay+1);
+			// if(currentDelay!=0 && delay/currentDelay==2){
+			// 	for (int i = 0; i < c.length; i++) {
+			// 		if(c[i]!=null && c[i].getPatience().ordinal()<5){
+			// 				c[i].upLevel();
+			// 				Game.UI().canvas().hide(c[i].getImageID()+"patience");
+			// 				Game.UI().canvas().changeImage(c[i].getImageID()+"patience", c[i].getPatienceIMG(), 50, 50);
+			// 				Game.UI().canvas().show(c[i].getImageID()+"patience");
+						
+			// 		}
+			// 	}
+			// }
 		}
 		else{
+			
+			for (int i = 0; i < c.length; i++) {
+				if(c[i]!=null && c[i].getPatience().ordinal()<5){
+						c[i].upLevel();
+						Game.UI().canvas().hide(c[i].getImageID()+"patience");
+						Game.UI().canvas().changeImage(c[i].getImageID()+"patience", c[i].getPatienceIMG(), 50, 50);
+						Game.UI().canvas().show(c[i].getImageID()+"patience");
+					
+				}
+			}
 			for (int j = 0; j < c.length; j++) {//בודק אם יש תאים ריקים במערך הלקוחות ורק אם כן אז מפעיל את הפונקציה של הוספה
 				if(c[j]==null){
 					counter++;
@@ -36,10 +59,11 @@ public class MyPeriodicLoop extends PeriodicLoop {
 				this.content.customers().addCustomer();
 			}
 			content.board().setCurrentDelay(0);
-			if(delay==0){
+			if(delay>6){
 				content.board().setDelay(delay-1);
 			}
-	}
+		}
+	
 		//TODO
 		//Redraw your character periodically by calling the correct method
 		

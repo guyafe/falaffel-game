@@ -52,24 +52,9 @@ public class refill implements ShapeListener {
 	}		
 	@Override
 	public void shapeClicked(String shapeID, int x, int y) {
-		this.index=1-this.index;
+		// this.index=1-this.index;
 		if(this.index==0){
-			if(x>345 || y>465 && x>306){
-				this.content.hummus().refill();
-				this.content.salad().refill();
-				this.content.fries().refill();
-				this.content.falafel().refill();
-			}
-			else {
-				Image g = (Image) Game.UI().canvas().getShape(shapeID);
-				g.setBound(130, 280);
-				Game.UI().canvas().changeImage(shapeID, getImage(), 130, 280);
-				Game.UI().canvas().moveToLocation(shapeID, 123, 362);
-				// this.switchImage();
-			}
-
-        }
-        else {
+			this.index=1-this.index;
 			Image g = (Image) Game.UI().canvas().getShape(shapeID);
 			// g.getImg().setBounds(g.getPosX(), g.getPosY(), 1000, 1000);
 			g.setBound(430, 410);
@@ -77,6 +62,24 @@ public class refill implements ShapeListener {
 			Game.UI().canvas().moveToLocation(shapeID, 90, 240);
 			// g = (Image) Game.UI().canvas().getShape(shapeID);
 			// this.switchImage();
+
+        }
+        else {
+			
+			if(x>345 || y>465 && x>306){
+				this.content.hummus().refill();
+				this.content.salad().refill();
+				this.content.fries().refill();
+				this.content.falafel().refill();
+			}
+			else {
+				this.index=1-this.index;
+				Image g = (Image) Game.UI().canvas().getShape(shapeID);
+				g.setBound(130, 280);
+				Game.UI().canvas().changeImage(shapeID, getImage(), 130, 280);
+				Game.UI().canvas().moveToLocation(shapeID, 123, 362);
+				// this.switchImage();
+			}
         }
 		
 	}

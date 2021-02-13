@@ -73,13 +73,14 @@ public class customer implements ShapeListener {
 
 	public void setPatience (level patience){
 		this.patience=patience;
+
 	}
 
 	public String getPatienceIMG() {
 		return this.patienceIMG;
 	}
 
-	public void setPatience (String patienceIMG){
+	public void setPatienceIMG (String patienceIMG){
 		this.patienceIMG=patienceIMG;
 	}
 
@@ -96,8 +97,9 @@ public class customer implements ShapeListener {
 	}
 
 	public level upLevel(){
-		this.patience.next();
-		if (this.patience!=null){
+		
+		if (this.patience.next()!=null){
+			this.patience=this.patience.next();
 			this.patienceIMG=patience.getBar();
 		}
 		else
@@ -110,7 +112,7 @@ public class customer implements ShapeListener {
 	public void shapeClicked(String shapeID, int x, int y) {
 		if (this.selection==true){
 			Game.UI().canvas().deleteShape(imgID);
-			Game.UI().canvas().deleteShape(imgID+this.patience.toString());
+			Game.UI().canvas().deleteShape(imgID+"patience");
 			content.customers().removeCustomer(shapeID);
 			playerListener.playerSuccessInServing();
 			content.score().getLabel().setText(String.valueOf(content.player().getScore()));

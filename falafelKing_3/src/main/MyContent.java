@@ -145,7 +145,7 @@ public class MyContent extends GameContent{
 		else {
 			y = loc.yLocation()-100;
 		}
-		img = new Image(customer.getImageID()+customer.getPatience().toString(),customer.getPatienceIMG(),500,100,loc.xLocation(), y);
+		img = new Image(customer.getImageID()+"patience",customer.getPatienceIMG(),50,100,loc.xLocation(), y);
 		img.setzOrder(4);
 		canvas.addShape(img);
 	

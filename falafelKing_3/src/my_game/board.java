@@ -18,7 +18,7 @@ public class board implements ShapeListener,BoardListener {
 	private int falafelAmount;
 	private int friesAmount;
 	private final int maxAmount=3;
-	private int delay=5;
+	private int delay=20;
 	private int currentDelay=0;
 	
 	
