@@ -104,28 +104,28 @@ public class Topping implements ShapeListener {
 	
 	@Override
 	public void shapeClicked(String shapeID, int x, int y) {
-		int quant;
+		int toppingAmount;
 		if (this.visible==true){
 			reduceQuantity(); //מחסר מהכמות שיש במלאי
 			TextLabel txt =(TextLabel) Game.UI().canvas().getShape(shapeID+"Amount");
 			if(shapeID=="salad"){   //מחסיר 1 מהכמות שנשארה כדי להשלים מנה ומציג
-				quant=content.board().getSaladAmount();
+				toppingAmount=content.board().getSaladAmount();
 				txt.getLabel().setText(String.valueOf(content.board().reduceSalad()));
 			}
 			else if(shapeID=="fries"){
-				quant=content.board().getFriesAmount();
+				toppingAmount=content.board().getFriesAmount();
 				txt.getLabel().setText(String.valueOf(content.board().reduceFries()));
 			}
 			else if(shapeID=="falafel"){
-				quant=content.board().getFalafelAmount();
+				toppingAmount=content.board().getFalafelAmount();
 				txt.getLabel().setText(String.valueOf(content.board().reduceFalafel()));
 			}
 			else{
-				quant=content.board().getHummusAmount();
+				toppingAmount=content.board().getHummusAmount();
 				txt.getLabel().setText(String.valueOf(content.board().reduceHummus())); 
 
 			}
-			if(quant>0){  //מעדכן את הניקוד
+			if(toppingAmount>0){  //מעדכן את הניקוד
 				content.player().changeScore(1);
 			}
 			else{

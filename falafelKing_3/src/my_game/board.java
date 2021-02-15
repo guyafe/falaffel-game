@@ -19,15 +19,14 @@ public class board implements ShapeListener,BoardListener {
 	private int hummusAmount;
 	private int falafelAmount;
 	private int friesAmount;
-	private final int maxAmount=3;
-	private int delay=42;
-	private int currentDelay=0;
-	private final int minDelay=25;
+	private final int maxAmount = 3;
+	private int delay = 42;
+	private int currentDelay = 0;
+	private final int minDelay = 25;
 	
 	
 	public board() {//הגדרנו מקבל מהמחלקה שחקן שמקבל את הנתונים הרלוונטיים - צריך אחר כך לשלב את זה במחלקת הלוח//
 		
-	
 	}
 
 	public void generateDish(){

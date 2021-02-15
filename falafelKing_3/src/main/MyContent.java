@@ -146,18 +146,18 @@ public class MyContent extends GameContent{
 		customer customer = this.customers.getCustomers()[number];
 		customerLocation loc = customer.getCustomerLocation();
 
-		Image img = new Image(customer.getImageID(),customer.getImage(),200,300,loc.xLocation(), loc.yLocation());
+		Image img = new Image(customer.getImageID(),customer.getImage(),200,300,loc.getXLocation(), loc.getYLocation());
 		img.setShapeListener(customer);
 		canvas.addShape(img);
 		int y;
 		int x= Integer.valueOf(customer.getImageID());//למה לעזאזל הייתי צריך להמיר לint???
 		if(x==1 || x==2){
-			y = loc.yLocation()-200;
+			y = loc.getYLocation()-200;
 		}
 		else {
-			y = loc.yLocation()-100;
+			y = loc.getYLocation()-100;
 		}
-		img = new Image(customer.getImageID()+"patience",customer.getPatienceIMG(),50,100,loc.xLocation(), y);
+		img = new Image(customer.getImageID()+"patience",customer.getPatienceIMG(),50,100,loc.getXLocation(), y);
 		img.setzOrder(4);
 		canvas.addShape(img);
 	
