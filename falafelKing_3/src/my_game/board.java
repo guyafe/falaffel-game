@@ -11,21 +11,23 @@ import shapes.Image;
 import shapes.TextLabel;
 
 public class board implements ShapeListener,BoardListener {
-	private final String sprayImage;
-	private final String sprayImageID;
+	private final String sprayImg = "resources/spray.png";
+	private final String sprayImgID = "spray";
+	private int fliesTimes = 0;
+	private final int fliesArrival = 5;
 	private int saladAmount;
 	private int hummusAmount;
 	private int falafelAmount;
 	private int friesAmount;
 	private final int maxAmount=3;
-	private int delay=20;
+	private int delay=42;
 	private int currentDelay=0;
+	private final int minDelay=25;
 	
 	
 	public board() {//הגדרנו מקבל מהמחלקה שחקן שמקבל את הנתונים הרלוונטיים - צריך אחר כך לשלב את זה במחלקת הלוח//
 		
-	   this.sprayImage = "resources/1.png";
-	   this.sprayImageID = "spray"; 
+	
 	}
 
 	public void generateDish(){
@@ -56,6 +58,10 @@ public class board implements ShapeListener,BoardListener {
 	public int getCurrentDelay(){
 		return this.currentDelay;
 	}
+	
+	public int getMinDelay(){
+		return this.minDelay;
+	}
 
 	public void setDelay(int delay){
 		this.delay=delay;
@@ -63,6 +69,14 @@ public class board implements ShapeListener,BoardListener {
 
 	public void setCurrentDelay(int currentDelay){
 		this.currentDelay=currentDelay;
+	}
+
+	public String getSprayImg(){
+		return this.sprayImg;
+	}
+
+	public String getSprayImgID(){
+		return this.sprayImgID;
 	}
 
 	public int getHummusAmount(){
@@ -116,31 +130,30 @@ public class board implements ShapeListener,BoardListener {
 		return false;
 	}
 
+	public int getFliesTime(){
+		return this.fliesTimes;
+	}
 
+	public int getFliesArrival(){
+		return this.fliesArrival;
+	}
 
+	public void setFliesTime(int time){
+		this.fliesTimes=time;
+	}
 
 	public void playerLostTheGame(){//למה צריך את זה?
 		Game.UI().canvas().deleteShape("lives");
 		Image img = new Image("over", "resources/game_over.jpg", 500, 500, 200, 300);
 		Game.UI().canvas().addShape(img);
 
-	}//המימוש של הפונקציה יהיה ציור על המסך שנגמר - הליסטנר של הבורד// 
-	   //צריך להוסיף תמונה של gameover//
-
-
-	
-	// public String getBGid(){
-	// 	return this.BGimageID;
-	// }
-
-	// public String getBGimg(){
-	// 	return this.BGimage;
-	// }
-	
+	}
 
 	@Override
 	public void shapeClicked(String shapeID, int x, int y) {
-		//
+		Game.UI().canvas().hide("flies");
+		this.fliesTimes=0;
+		Game.UI().canvas().show("gas");
 	}
 
 

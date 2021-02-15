@@ -31,7 +31,12 @@ public class player implements PlayerListener {
     public void customerLostPatience(){
         this.lives--;
         this.score-=5;
-        if (this.lives==0){
+        if (this.lives==1){
+            TextLabel txt =(TextLabel) Game.UI().canvas().getShape("lives");
+            txt.getLabel().setForeground(java.awt.Color.red);
+
+        }
+        else if (this.lives==0){
             this.gameOver();
         }
     }
@@ -63,6 +68,7 @@ public class player implements PlayerListener {
         Game.UI().canvas().hide("saladAmount");
         Game.UI().canvas().hide("friesAmount");
         Game.UI().canvas().hide("falafelAmount");
+        Game.UI().canvas().hide("header");
 
         for (int i = 0; i < 4; i++) {//לשנות את ה-4 למשהו יותר אסוציאטיבי
             Game.UI().canvas().deleteShape(String.valueOf(i));

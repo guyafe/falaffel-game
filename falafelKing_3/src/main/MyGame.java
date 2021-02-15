@@ -31,32 +31,11 @@ public class MyGame extends Game {
 	@Override
 	protected void initCanvas() {
 		GameCanvas canvas = gameUI.canvas();
-		//JFrame f = gameUI.frame();
-
 		
-
-
-		
-		
-		/*try {
-			f.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("resources/background.png")))));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
+		//תמונת רקע
 		Image img = new Image("bg","resources/background.png",812,1200,500,400);
 		img.setzOrder(1);
 		canvas.addShape(img);
-		/*
-		Image img2 = new Image("2","resources/2.png",500,500,200,300);
-		img2.setzOrder(3);
-		img2.setDraggable(false);
-		canvas.addShape(img2);
-		*/
-		// board board = content.board();
-		// Image image = new Image(board.getBGid(), board.getBGimg(), 220,200, 200, 100);
-		// image.setShapeListener(board);
-		// image.setzOrder(3);
-		// canvas.addShape(image);
 		
 		//מציג את התמונות של התוספות
 		Topping salad = content.salad();
@@ -83,12 +62,16 @@ public class MyGame extends Game {
 		shapes.TextLabel scoreTXT = content.score();
 		scoreTXT.getLabel().setText(String.valueOf(content.player().getScore()));
 		scoreTXT.setzOrder(1);
+		scoreTXT.setFontName("times new roman");
+		scoreTXT.getLabel().setForeground(java.awt.Color.black);
 		canvas.addShape(scoreTXT);
 
 		//מציג את החיים הנותרים לשחקן
 		shapes.TextLabel livesTXT = content.lives();
 		livesTXT.getLabel().setText(String.valueOf(content.player().getLives()));
 		livesTXT.setzOrder(1);
+		livesTXT.setFontName("times new roman");
+		livesTXT.getLabel().setForeground(java.awt.Color.black);
 		canvas.addShape(livesTXT);
 
 		
@@ -104,12 +87,39 @@ public class MyGame extends Game {
 		canvas.addShape(img);
 		canvas.hide("full");
 
+		//תמונת האיש במחסן
 		refill seller = content.seller();
-		// img = new Image(seller.getImageID(),seller.getImage(),500,500,98, 402);
 		img = new Image(seller.getImageID(),seller.getImage(),130,280,188, 502);
 		img.setShapeListener(seller);
 		img.setzOrder(4);
 		canvas.addShape(img);
+
+		//תמונת זבובים
+		img = new Image("flies","resources/flies.png",255,127,576,420);
+		canvas.addShape(img);
+		img.setzOrder(5);
+		canvas.hide("flies");
+
+		//תמונת בקבוק ספריי
+		img = new Image(content.board().getSprayImgID(),content.board().getSprayImg(),40,127,692,495);
+		img.setShapeListener(content.board());
+		img.setzOrder(4);
+		canvas.addShape(img);
+
+		//תמונת ספריי
+		img = new Image("gas","resources/gas.png",250,520,560,400);
+		img.setzOrder(6);
+		canvas.addShape(img);	
+		canvas.hide("gas");
+
+
+		//כותרת לתוצאת השחקן
+		shapes.TextLabel txt = new shapes.TextLabel("header", "score:        lives:", 120, 112);;
+		// txt.getLabel().setText(String.valueOf(content.player().getScore()));
+		txt.setzOrder(1);
+		txt.setFontSize(20);
+		txt.getLabel().setForeground(java.awt.Color.black);
+		canvas.addShape(txt);
 
 	}
 	
@@ -132,7 +142,7 @@ public class MyGame extends Game {
 	public static void main(String[] args) {
 		MyGame game = new MyGame();
 		game.setGameContent(new MyContent());
-		PeriodicScheduler.periodicInterval = 200;
+		PeriodicScheduler.periodicInterval = 100;
 		MyPeriodicLoop periodicLoop = new MyPeriodicLoop();
 		periodicLoop.setContent(game.getContent());
 		game.setPeriodicLoop(periodicLoop);

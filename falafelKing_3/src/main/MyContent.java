@@ -50,10 +50,10 @@ public class MyContent extends GameContent{
         this.fries = new Topping(top.fries, this);
         this.hummus = new Topping(top.hummus, this);
 
-		this.score = new shapes.TextLabel("score", "10", 170, 130);
+		this.score = new shapes.TextLabel("score", "10", 125, 135);
 		score.setFontSize(40);
 
-		this.lives = new shapes.TextLabel("lives", "10", 900, 130);
+		this.lives = new shapes.TextLabel("lives", "10", 230, 135);
 		lives.setFontSize(40);
 
 		this.board = new board();
