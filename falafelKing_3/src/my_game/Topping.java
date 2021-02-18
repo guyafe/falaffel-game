@@ -15,10 +15,10 @@ public class Topping implements ShapeListener {
 	// private MyContent content = new MyContent();
 
 	public enum top{
-		falafel (390,610),  //סתם ערכים כרגע. לשנות ככה שיתאים בלוח
-		salad (580,510),
-		fries (390,510),
-		hummus (590,610);
+		falafel (380,600),  //סתם ערכים כרגע. לשנות ככה שיתאים בלוח
+		salad (583,520),
+		fries (390,515),
+		hummus (592,608);
 		private final int xLocation, yLocation;
 		private top(int xLocation, int yLocation) {
 			this.xLocation = xLocation;

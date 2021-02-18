@@ -44,17 +44,17 @@ public class MyGame extends Game {
 		canvas.addShape(img);
 		
 		Topping hummus = content.hummus();
-		img = new Image(hummus.getImageID(),hummus.getImage(),200,90,hummus.getLocation().xLocation(), hummus.getLocation().yLocation());
+		img = new Image(hummus.getImageID(),hummus.getImage(),200,50,hummus.getLocation().xLocation(), hummus.getLocation().yLocation());
 		img.setShapeListener(hummus);
 		canvas.addShape(img);
 
 		Topping fries = content.fries();
-		img = new Image(fries.getImageID(),fries.getImage(),200,90,fries.getLocation().xLocation(), fries.getLocation().yLocation());
+		img = new Image(fries.getImageID(),fries.getImage(),200,80,fries.getLocation().xLocation(), fries.getLocation().yLocation());
 		img.setShapeListener(fries);
 		canvas.addShape(img);
 
 		Topping falafel = content.falafel();
-		img = new Image(falafel.getImageID(),falafel.getImage(),200,100,falafel.getLocation().xLocation(), falafel.getLocation().yLocation());
+		img = new Image(falafel.getImageID(),falafel.getImage(),200,60,falafel.getLocation().xLocation(), falafel.getLocation().yLocation());
 		img.setShapeListener(falafel);
 		canvas.addShape(img);
 
@@ -115,12 +115,18 @@ public class MyGame extends Game {
 
 		//כותרת לתוצאת השחקן
 		shapes.TextLabel txt = new shapes.TextLabel("header", "score:        lives:", 120, 112);;
-		// txt.getLabel().setText(String.valueOf(content.player().getScore()));
 		txt.setzOrder(1);
 		txt.setFontSize(20);
 		txt.getLabel().setForeground(java.awt.Color.black);
 		canvas.addShape(txt);
 
+		//קרדיט למאי
+		txt = new shapes.TextLabel("credit", "graphic design by May Levi", 380, 715);;
+		txt.setFontSize(20);
+		txt.setFontName("david");
+		txt.getLabel().setForeground(java.awt.Color.black);
+
+		canvas.addShape(txt);
 	}
 	
 		//TODO
@@ -142,7 +148,7 @@ public class MyGame extends Game {
 	public static void main(String[] args) {
 		MyGame game = new MyGame();
 		game.setGameContent(new MyContent());
-		PeriodicScheduler.periodicInterval = 100;
+		PeriodicScheduler.periodicInterval = 250;
 		MyPeriodicLoop periodicLoop = new MyPeriodicLoop();
 		periodicLoop.setContent(game.getContent());
 		game.setPeriodicLoop(periodicLoop);

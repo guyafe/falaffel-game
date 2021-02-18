@@ -51,20 +51,31 @@ public class MyContent extends GameContent{
         this.hummus = new Topping(top.hummus, this);
 
 		this.score = new shapes.TextLabel("score", "10", 125, 135);
-		score.setFontSize(40);
+		this.score.setFontSize(40);
 
 		this.lives = new shapes.TextLabel("lives", "10", 230, 135);
-		lives.setFontSize(40);
+		this.lives.setFontSize(40);
 
 		this.board = new board();
-		this.hummusAmount = new shapes.TextLabel("hummusAmount",String.valueOf(board.getHummusAmount()), 490, 540);
-		hummusAmount.setzOrder(1);
-		this.saladAmount = new shapes.TextLabel("saladAmount",String.valueOf(board.getSaladAmount()), 490, 470);
-		saladAmount.setzOrder(1);
-		this.friesAmount = new shapes.TextLabel("friesAmount",String.valueOf(board.getFriesAmount()), 300, 450);
-		friesAmount.setzOrder(1);
+		this.hummusAmount = new shapes.TextLabel("hummusAmount",String.valueOf(board.getHummusAmount()), 495, 540);
+		this.hummusAmount.setzOrder(1);
+		this.hummusAmount.setFontName("david");
+		this.hummusAmount.getLabel().setForeground(java.awt.Color.black);
+
+		this.saladAmount = new shapes.TextLabel("saladAmount",String.valueOf(board.getSaladAmount()), 485, 473);
+		this.saladAmount.setzOrder(1);
+		this.saladAmount.setFontName("david");
+		this.saladAmount.getLabel().setForeground(java.awt.Color.black);
+
+		this.friesAmount = new shapes.TextLabel("friesAmount",String.valueOf(board.getFriesAmount()), 302, 455);
+		this.friesAmount.setzOrder(1);
+		this.friesAmount.setFontName("david");
+		this.friesAmount.getLabel().setForeground(java.awt.Color.black);
+
 		this.falafelAmount = new shapes.TextLabel("falafelAmount",String.valueOf(board.getFalafelAmount()), 270, 530);
-		falafelAmount.setzOrder(1);
+		this.falafelAmount.setzOrder(1);
+		this.falafelAmount.setFontName("david");
+		this.falafelAmount.getLabel().setForeground(java.awt.Color.black);
 
 		this.seller = new refill(this);
 		

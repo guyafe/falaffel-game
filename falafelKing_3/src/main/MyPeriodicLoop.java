@@ -31,6 +31,11 @@ public class MyPeriodicLoop extends PeriodicLoop {
 		int delay = content.board().getDelay();
 		int currentDelay = content.board().getCurrentDelay();
 		int fliesTime=content.board().getFliesTime();
+		
+		if(canvas.getShape("gas").getStatus()==STATUS.SHOW){//מסתיר את הכז במידה ומוצג
+			canvas.hide("gas");
+		}
+		
 		if(currentDelay<delay){	//כל פרק זמן מאיץ את קצב המשחק
 			content.board().setCurrentDelay(currentDelay+1);
 		}
@@ -72,9 +77,6 @@ public class MyPeriodicLoop extends PeriodicLoop {
 				canvas.show("flies");
 				content.board().setFliesTime(fliesTime+1);
 
-			}
-			if(canvas.getShape("gas").getStatus()==STATUS.SHOW){//מסתיר את הכז במידה ומוצג
-				canvas.hide("gas");
 			}
 
 			for (int j = 0; j < c.length; j++) {//בודק אם יש תאים ריקים במערך הלקוחות ורק אם כן אז מפעיל את הפונקציה של הוספה
