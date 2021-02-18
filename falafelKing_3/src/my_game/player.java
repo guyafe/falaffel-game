@@ -1,22 +1,21 @@
 package my_game;
 
-import org.apache.poi.ss.usermodel.Color;
-
 import game.Game;
+import gui.GameCanvas;
 import shapes.Image;
 import shapes.TextLabel;
 
 public class player implements PlayerListener {
-    public String userName;
-    public int score;
-    public int lives;
-    BoardListener boardListener;
+    private String userName;
+    private int score;
+    private int lives;
+    private BoardListener boardListener;
 
     public player (String name, BoardListener theBoard) {//זה הבנאי של המחלקה, השם בסוגריים כי זה פרמטר שמישהו אחר מביא לו, בהמשך יש את הדברים הקבועים שקורים עם תחילת מהחלקה//
-        userName=name;
-        score=0;
-        lives=3;
-        boardListener = theBoard;
+        this.userName=name;
+        this.score=0;
+        this.lives=3;
+        this.boardListener = theBoard;
     }
     public String getUserName(){
         return this.userName;
@@ -34,7 +33,6 @@ public class player implements PlayerListener {
         if (this.lives==1){
             TextLabel txt =(TextLabel) Game.UI().canvas().getShape("lives");
             txt.getLabel().setForeground(java.awt.Color.red);
-
         }
         else if (this.lives==0){
             this.gameOver();
@@ -50,33 +48,30 @@ public class player implements PlayerListener {
      public void gameOver (){
         // boardListener.playerLostTheGame();
         // Game.UI().canvas().getShape("lives").setzOrder(0);
+        GameCanvas canvas = Game.UI().canvas();
         Image img = new Image("over", "resources/game_over.png", 1000, 500, 500, 450);
         img.setzOrder(6);
-        Game.UI().canvas().addShape(img);
+        canvas.addShape(img);
                
-        TextLabel txt = (TextLabel) Game.UI().canvas().getShape("score");
-        txt = new TextLabel("finalScore", "YOUR FINAL SCORE IS: "+txt.getLabel().getText(), 200, 600);
-        txt.setzOrder(6);
-        txt.setFontSize(45);
-        // txt.setFontName("david");
-        txt.getLabel().setForeground(java.awt.Color.black);
-		Game.UI().canvas().addShape(txt);
+        TextLabel txtFinalScore = new TextLabel("finalScore", "YOUR FINAL SCORE IS: "+ this.score, 200, 600);
+        txtFinalScore.setzOrder(6);
+        txtFinalScore.setFontSize(45);
+        txtFinalScore.getLabel().setForeground(java.awt.Color.black);
+		canvas.addShape(txtFinalScore);
 
-        Game.UI().canvas().hide("lives");
-        Game.UI().canvas().hide("score");
-        Game.UI().canvas().hide("hummusAmount");
-        Game.UI().canvas().hide("saladAmount");
-        Game.UI().canvas().hide("friesAmount");
-        Game.UI().canvas().hide("falafelAmount");
-        Game.UI().canvas().hide("header");
+        canvas.hide("lives");
+        canvas.hide("score");
+        canvas.hide("hummusAmount");
+        canvas.hide("saladAmount");
+        canvas.hide("friesAmount");
+        canvas.hide("falafelAmount");
+        canvas.hide("header");
 
         for (int i = 0; i < 4; i++) {//לשנות את ה-4 למשהו יותר אסוציאטיבי
-            Game.UI().canvas().deleteShape(String.valueOf(i));
-            Game.UI().canvas().deleteShape(String.valueOf(i)+"patience"); 
+            canvas.deleteShape(String.valueOf(i));
+            canvas.deleteShape(String.valueOf(i)+"patience"); 
         }
-        
         Game.endGame();
-        
      }
 
 }

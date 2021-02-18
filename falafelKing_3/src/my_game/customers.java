@@ -10,95 +10,96 @@ import shapes.Image;
 public class customers  {
 
 	public enum customerLocation{
-		a (350,300),  //סתם ערכים כרגע. לשנות ככה שיתאים בלוח
+		a (350,300),
 		b (500,300),
 		c (650,300),
 		d (800,300);
-		// e (700,200);
+		
 		private final int xLocation, yLocation;
 		private customerLocation(int xLocation, int yLocation) {
 			this.xLocation = xLocation;
 			this.yLocation = yLocation;
 		}
-		public int xLocation() {
+
+		public int getXLocation() {
 			return xLocation;
 		}
-		public int yLocation() {
+
+		public int getYLocation() {
 			return yLocation;
 		}
 		public customerLocation next() {
 			if (this.ordinal()==customerLocation.values().length-1){
 				return null;
 			}
-			return customerLocation.values()[this.ordinal()+1]; //לוודא שעובד
+			return customerLocation.values()[this.ordinal()+1];
 		}
 	}
-
+	
+	private final int numberOfCustomers = 4;
+	private customer[] customers;
+	private boolean[] imageVisible;
+	private PlayerListener playerListener;
 	private MyContent content;
+
+	public customers (PlayerListener pListener){
+		this.customers = new customer[numberOfCustomers];
+		for (int i = 0; i < customers.length; i++) {
+			this.customers[i]=null;
+		}
+		this.imageVisible = new boolean[numberOfCustomers];
+		for (int i = 0; i < imageVisible.length; i++) {
+			this.imageVisible[i]=false;
+		}
+		this.playerListener=pListener;
+	}
+
+	public customer[] getCustomers() {
+		return this.customers;
+	}
 
 	public void setContent(MyContent content) {
 		this.content = content;
 	}
 
-	private final int numOfCustomers=4;
-	private customer[] customers;
-	private boolean[] imageVisible;
-	private PlayerListener playerListener;
-
-	public customers (PlayerListener pListener){
-		customers = new customer[numOfCustomers];
-		for (int i = 0; i < customers.length; i++) {
-			customers[i]=null;
+	public void addCustomer() {
+		
+		int i=(int)((Math.random())*numberOfCustomers);
+		while (this.customers[i] != null) {
+			i=(int)((Math.random())*numberOfCustomers);
 		}
-		imageVisible = new boolean[numOfCustomers];
-		for (int i = 0; i < imageVisible.length; i++) {
-			imageVisible[i]=false;
+		int j=(int) ((Math.random())*numberOfCustomers);
+		while (imageVisible[j] == true) {
+			j=(int) ((Math.random())*numberOfCustomers);
 		}
-		this.playerListener=pListener;
+		this.customers[i] = new customer(String.valueOf(j), content.board().isComplete(), customerLocation.values()[i], playerListener, content);
+		this.imageVisible[j] = true;
+		this.content.addCharacter(i);
 	}
 
-	public customer[] getCustomers (){
-		return customers;
-	}
-
-	public void addCustomer(){
-		int i=(int) ((Math.random())*numOfCustomers);
-		while (customers[i]!=null) {
-			i=(int) ((Math.random())*numOfCustomers);
-		}
-		int j=(int) ((Math.random())*numOfCustomers);
-		while (imageVisible[j]!=false) {
-			j=(int) ((Math.random())*numOfCustomers);
-		}
-		this.customers[i]=new customer(String.valueOf(j),content.board().isComplete(), customerLocation.values()[i], playerListener, content);//לשנות את ה"אמת" לפונקציה שמקבלת אם המנה מוכנה
-		this.imageVisible[j]=true;
-		content.addCharacter(i);
-
-	}
-
-	public void removeCustomer(String imgID){
-		// int i = Integer.valueOf(imgID);
+	public void removeCustomer(String imgID) {
 		for (int i = 0; i < this.customers.length; i++) {
-			if(this.customers[i]!=null){
-				if(this.customers[i].getImageID()==imgID){
-					this.customers[i]=null;
-				}
+			customer currentCustomer = this.customers[i];
+			if(currentCustomer != null && currentCustomer.getImageID()==imgID) { // איחדנו את ה איפים
+					this.customers[i] = null;
 			}
 		}
-		this.imageVisible[Integer.valueOf(imgID)]=false;
+		this.imageVisible[Integer.valueOf(imgID)] = false;
 	}
 
 	public void changeSelection(boolean selection){
 		for (int i = 0; i < customers.length; i++) {
-			if(this.customers[i]!=null){
+			if(this.customers[i] != null){
 				this.customers[i].changeSelection(selection);
 			}
 		}
 	}
 
-	public void upLevel(){
+	public void upLevel() {
 		for (int i = 0; i < customers.length; i++) {
-			this.customers[i].upLevel();
+			if(this.customers[i] != null) {
+				this.customers[i].upLevel();
+			}
 		}
 	}
 

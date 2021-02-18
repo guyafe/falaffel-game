@@ -1,5 +1,4 @@
-// מה נשמע
-//מחר נגמר הסגר אז בסדר//
+
 package my_game;
 
 import DB.ExcelTable;
@@ -108,9 +107,8 @@ public class customer implements ShapeListener {
 		this.selection=selection;
 	}
 
-	public level upLevel(){
-		
-		if (this.patience.next()!=null){
+	public level upLevel(){ 
+		if (this.patience.next()!=null) {
 			this.patience=this.patience.next();
 			this.patienceIMG=patience.getBar();
 		}
@@ -118,11 +116,12 @@ public class customer implements ShapeListener {
 		{
 			this.playerListener.customerLostPatience();
 		}
-		return this.patience;//הוספנו החל מה else//
+		return this.patience;
 	}
+
 	@Override
 	public void shapeClicked(String shapeID, int x, int y) {
-		if (this.selection==true){
+		if (this.selection==true) {
 			Game.UI().canvas().deleteShape(imgID);
 			Game.UI().canvas().deleteShape(imgID+"patience");
 			content.customers().removeCustomer(shapeID);
@@ -130,12 +129,7 @@ public class customer implements ShapeListener {
 			content.score().getLabel().setText(String.valueOf(content.player().getScore()));
 			content.customers().changeSelection(false);
 			content.board().generateDish();
-
-
-
-
 		}
-
 	}
 
 
