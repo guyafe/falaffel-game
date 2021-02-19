@@ -10,7 +10,6 @@ import my_game.customers;
 import my_game.Point;
 import my_game.Topping;
 import my_game.Toppings;
-import my_game.BoardListener;
 import my_game.player;
 import my_game.refill;
 import my_game.Topping.top;
@@ -42,40 +41,25 @@ public class MyContent extends GameContent{
 		// GameCanvas canvas = Game.UI().canvas();
 
 		
-		this.player = new player("mor", (BoardListener)board);//לעשות אולי שאפשר להזין את השם שחקן
+		this.player = new player(this);
+		
 		this.customers = new customers((PlayerListener)player);
 		this.customers.setContent(this);
+		
 		this.falafel = new Topping(top.falafel, this);
         this.salad = new Topping(top.salad, this);
         this.fries = new Topping(top.fries, this);
         this.hummus = new Topping(top.hummus, this);
 
 		this.score = new shapes.TextLabel("score", "10", 125, 135);
-		this.score.setFontSize(40);
-
 		this.lives = new shapes.TextLabel("lives", "10", 230, 135);
-		this.lives.setFontSize(40);
 
 		this.board = new board();
+
 		this.hummusAmount = new shapes.TextLabel("hummusAmount",String.valueOf(board.getHummusAmount()), 495, 540);
-		this.hummusAmount.setzOrder(1);
-		this.hummusAmount.setFontName("david");
-		this.hummusAmount.getLabel().setForeground(java.awt.Color.black);
-
 		this.saladAmount = new shapes.TextLabel("saladAmount",String.valueOf(board.getSaladAmount()), 485, 473);
-		this.saladAmount.setzOrder(1);
-		this.saladAmount.setFontName("david");
-		this.saladAmount.getLabel().setForeground(java.awt.Color.black);
-
 		this.friesAmount = new shapes.TextLabel("friesAmount",String.valueOf(board.getFriesAmount()), 302, 455);
-		this.friesAmount.setzOrder(1);
-		this.friesAmount.setFontName("david");
-		this.friesAmount.getLabel().setForeground(java.awt.Color.black);
-
 		this.falafelAmount = new shapes.TextLabel("falafelAmount",String.valueOf(board.getFalafelAmount()), 270, 530);
-		this.falafelAmount.setzOrder(1);
-		this.falafelAmount.setFontName("david");
-		this.falafelAmount.getLabel().setForeground(java.awt.Color.black);
 
 		this.seller = new refill(this);
 		
@@ -157,18 +141,17 @@ public class MyContent extends GameContent{
 		customer customer = this.customers.getCustomers()[number];
 		customerLocation loc = customer.getCustomerLocation();
 
-		Image img = new Image(customer.getImageID(),customer.getImage(),200,300,loc.getXLocation(), loc.getYLocation());
+		Image img = new Image(customer.getImageID(),customer.getImage(),200,customer.getHeight(),loc.getXLocation(), loc.getYLocation());
+		
+		int x= Integer.valueOf(customer.getImageID());//למה לעזאזל הייתי צריך להמיר לint???
+		if(x!=1 && x!=2){//מנמיך בקנבס לקוחות נמוכים
+			img.setPosY(img.getPosY()+50);
+		}
+
 		img.setShapeListener(customer);
 		canvas.addShape(img);
-		int y;
-		int x= Integer.valueOf(customer.getImageID());//למה לעזאזל הייתי צריך להמיר לint???
-		if(x==1 || x==2){
-			y = loc.getYLocation()-200;
-		}
-		else {
-			y = loc.getYLocation()-100;
-		}
-		img = new Image(customer.getImageID()+"patience",customer.getPatienceIMG(),50,100,loc.getXLocation(), y);
+
+		img = new Image(customer.getImageID()+"patience",customer.getPatienceIMG(),50,100,loc.getXLocation(), customer.getBarYLocation());
 		img.setzOrder(4);
 		canvas.addShape(img);
 	

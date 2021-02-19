@@ -8,7 +8,7 @@ import game.PeriodicLoop;
 import shapes.Image;
 import shapes.TextLabel;
 
-public class board implements ShapeListener,BoardListener {
+public class board implements ShapeListener {
 	private final String sprayImg = "resources/spray.png";
 	private final String sprayImgID = "spray";
 	private int fliesTimes = 0;
@@ -138,13 +138,6 @@ public class board implements ShapeListener,BoardListener {
 
 	public void setFliesTime(int time){
 		this.fliesTimes=time;
-	}
-
-	public void playerLostTheGame(){//למה צריך את זה?
-		Game.UI().canvas().deleteShape("lives");
-		Image img = new Image("over", "resources/game_over.jpg", 500, 500, 200, 300);
-		Game.UI().canvas().addShape(img);
-
 	}
 
 	@Override

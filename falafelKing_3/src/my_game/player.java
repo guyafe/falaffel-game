@@ -2,24 +2,23 @@ package my_game;
 
 import game.Game;
 import gui.GameCanvas;
+import main.MyContent;
 import shapes.Image;
 import shapes.TextLabel;
 
 public class player implements PlayerListener {
-    private String userName;
+    private MyContent content;
     private int score;
     private int lives;
-    private BoardListener boardListener;
 
-    public player (String name, BoardListener theBoard) {//זה הבנאי של המחלקה, השם בסוגריים כי זה פרמטר שמישהו אחר מביא לו, בהמשך יש את הדברים הקבועים שקורים עם תחילת מהחלקה//
-        this.userName=name;
+
+    public player (MyContent content) {//זה הבנאי של המחלקה, השם בסוגריים כי זה פרמטר שמישהו אחר מביא לו, בהמשך יש את הדברים הקבועים שקורים עם תחילת מהחלקה//
+        this.content=content;
         this.score=0;
         this.lives=3;
-        this.boardListener = theBoard;
+
     }
-    public String getUserName(){
-        return this.userName;
-    }
+
     public int getScore(){
         return this.score;
     }
@@ -46,8 +45,7 @@ public class player implements PlayerListener {
          this.score+=diff;
      }
      public void gameOver (){
-        // boardListener.playerLostTheGame();
-        // Game.UI().canvas().getShape("lives").setzOrder(0);
+
         GameCanvas canvas = Game.UI().canvas();
         Image img = new Image("over", "resources/game_over.png", 1000, 500, 500, 450);
         img.setzOrder(6);
@@ -66,8 +64,9 @@ public class player implements PlayerListener {
         canvas.hide("friesAmount");
         canvas.hide("falafelAmount");
         canvas.hide("header");
-
-        for (int i = 0; i < 4; i++) {//לשנות את ה-4 למשהו יותר אסוציאטיבי
+         
+        for (int i = 0; i < content.customers().getNumOfImages(); i++) {
+            
             canvas.deleteShape(String.valueOf(i));
             canvas.deleteShape(String.valueOf(i)+"patience"); 
         }
