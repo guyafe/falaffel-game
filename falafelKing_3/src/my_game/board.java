@@ -8,11 +8,7 @@ import game.PeriodicLoop;
 import shapes.Image;
 import shapes.TextLabel;
 
-public class board implements ShapeListener {
-	private final String sprayImg = "resources/spray.png";
-	private final String sprayImgID = "spray";
-	private int fliesTimes = 0;
-	private final int fliesArrival = 5;
+public class board {
 	private int saladAmount;
 	private int hummusAmount;
 	private int falafelAmount;
@@ -22,8 +18,7 @@ public class board implements ShapeListener {
 	private int currentDelay=0;
 	private final int minDelay=6;
 	
-	
-	public board() {//הגדרנו מקבל מהמחלקה שחקן שמקבל את הנתונים הרלוונטיים - צריך אחר כך לשלב את זה במחלקת הלוח//
+	public board() {
 		
 	
 	}
@@ -67,14 +62,6 @@ public class board implements ShapeListener {
 
 	public void setCurrentDelay(int currentDelay){
 		this.currentDelay=currentDelay;
-	}
-
-	public String getSprayImg(){
-		return this.sprayImg;
-	}
-
-	public String getSprayImgID(){
-		return this.sprayImgID;
 	}
 
 	public int getHummusAmount(){
@@ -127,58 +114,5 @@ public class board implements ShapeListener {
 		}
 		return false;
 	}
-
-	public int getFliesTime(){
-		return this.fliesTimes;
-	}
-
-	public int getFliesArrival(){
-		return this.fliesArrival;
-	}
-
-	public void setFliesTime(int time){
-		this.fliesTimes=time;
-	}
-
-	@Override
-	public void shapeClicked(String shapeID, int x, int y) {
-		Game.UI().canvas().hide("flies");
-		this.fliesTimes=0;
-		Game.UI().canvas().show("gas");
-	}
-
-
-
-
-
-	@Override
-	public void shapeRightClicked(String shapeID, int x, int y) {
-		// 
-	}
-	@Override
-	public void mouseEnterShape(String shapeID, int x, int y) {
-		//
-
-	}
-	@Override
-	public void mouseExitShape(String shapeID, int x, int y) {
-		//
-
-	}
-	@Override
-	public void shapeMoved(String shapeID, int dx, int dy) {
-		//
-	}
-	@Override
-	public void shapeStartDrag(String shapeID) {
-		//
-
-	}
-	@Override
-	public void shapeEndDrag(String shapeID) {
-		// 
-
-	}
-	
 	
 }

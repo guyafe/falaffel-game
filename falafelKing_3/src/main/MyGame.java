@@ -107,8 +107,8 @@ public class MyGame extends Game {
 		canvas.hide("flies");
 
 		//תמונת בקבוק ספריי
-		img = new Image(content.board().getSprayImgID(),content.board().getSprayImg(),40,127,692,495);
-		img.setShapeListener(content.board());
+		img = new Image("spray","resources/spray.png",40,127,692,495);
+		img.setShapeListener(content.spray());
 		img.setzOrder(4);
 		canvas.addShape(img);
 
@@ -117,6 +117,20 @@ public class MyGame extends Game {
 		img.setzOrder(6);
 		canvas.addShape(img);	
 		canvas.hide("gas");
+
+		//תמונת כפתור מוזיקה
+		img = new Image("music","resources/music.png",65,42,870,120);
+		img.setzOrder(4);
+		img.setShapeListener(content.flow());
+		canvas.addShape(img);	
+
+		//תמונת כפתור עצירה
+		img = new Image("pause","resources/pause.png",65,42,870,165);
+		img.setzOrder(4);
+		img.setShapeListener(content.flow());
+		canvas.addShape(img);
+
+
 
 		//מציג את הניקוד של השחקן
 		shapes.TextLabel txt = content.score();

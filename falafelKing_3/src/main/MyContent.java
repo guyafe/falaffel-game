@@ -8,14 +8,15 @@ import my_game.board;
 import my_game.customer;
 import my_game.customers;
 import my_game.Point;
+import my_game.Spray;
 import my_game.Topping;
-import my_game.Toppings;
 import my_game.player;
 import my_game.refill;
 import my_game.Topping.top;
 import my_game.customers.customerLocation;
 import shapes.Image;
 import shapes.TextLabel;
+import my_game.GameFlow;
 import my_game.PlayerListener;
 
 public class MyContent extends GameContent{
@@ -33,6 +34,8 @@ public class MyContent extends GameContent{
 	private shapes.TextLabel friesAmount;
 	private shapes.TextLabel falafelAmount;
 	private refill seller;
+	private Spray spray;
+	private GameFlow flow;
 	//TODO
 	//Declare your own character
 
@@ -62,7 +65,10 @@ public class MyContent extends GameContent{
 		this.falafelAmount = new shapes.TextLabel("falafelAmount",String.valueOf(board.getFalafelAmount()), 270, 530);
 
 		this.seller = new refill(this);
-		
+
+		this.spray = new Spray(this);
+
+		this.flow = new GameFlow(this);
 
 	}	
 	public player player() {
@@ -119,6 +125,14 @@ public class MyContent extends GameContent{
 
 	public refill seller(){
 		return this.seller;
+	}
+	
+	public Spray spray(){
+		return this.spray;
+	}
+
+	public GameFlow flow(){
+		return this.flow;
 	}
 
 	public void addCharacter(int number) {

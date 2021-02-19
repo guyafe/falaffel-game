@@ -11,8 +11,7 @@ import gui.GameCanvas;
 import main.MyContent;
 
 public class Topping implements ShapeListener {
-	//  private GameCanvas canvas = Game.UI().canvas();
-	// private MyContent content = new MyContent();
+
 
 	public enum top{
 		falafel (380,600),  //סתם ערכים כרגע. לשנות ככה שיתאים בלוח
@@ -105,7 +104,8 @@ public class Topping implements ShapeListener {
 	@Override
 	public void shapeClicked(String shapeID, int x, int y) {
 		int toppingAmount;
-		if (this.visible==true){
+		if (this.visible==true && this.content.flow().getPausedStatus()==false){
+			
 			reduceQuantity(); //מחסר מהכמות שיש במלאי
 			TextLabel txt =(TextLabel) Game.UI().canvas().getShape(shapeID+"Amount");
 			if(shapeID=="salad"){   //מחסיר 1 מהכמות שנשארה כדי להשלים מנה ומציג

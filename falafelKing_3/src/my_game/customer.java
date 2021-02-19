@@ -140,7 +140,7 @@ public class customer implements ShapeListener {
 
 	@Override
 	public void shapeClicked(String shapeID, int x, int y) {
-		if (this.selection==true) {
+		if (this.selection==true && this.content.flow().getPausedStatus()==false) {
 			Game.UI().canvas().deleteShape(imgID);
 			Game.UI().canvas().deleteShape(imgID+"patience");
 			content.customers().removeCustomer(shapeID);
