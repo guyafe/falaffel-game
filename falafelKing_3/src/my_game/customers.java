@@ -10,10 +10,10 @@ import shapes.Image;
 public class customers  {
 
 	public enum customerLocation{
-		a (350,300),
-		b (500,300),
-		c (650,300),
-		d (800,300);
+		a (350,342),
+		b (500,342),
+		c (650,342),
+		d (800,342);
 		
 		private final int xLocation, yLocation;
 		private customerLocation(int xLocation, int yLocation) {
@@ -37,6 +37,7 @@ public class customers  {
 	}
 	
 	private final int numberOfCustomers = 4;
+	private final int numOfImages = 5;
 	private customer[] customers;
 	private boolean[] imageVisible;
 	private PlayerListener playerListener;
@@ -47,7 +48,7 @@ public class customers  {
 		for (int i = 0; i < customers.length; i++) {
 			this.customers[i]=null;
 		}
-		this.imageVisible = new boolean[numberOfCustomers];
+		this.imageVisible = new boolean[numOfImages];
 		for (int i = 0; i < imageVisible.length; i++) {
 			this.imageVisible[i]=false;
 		}
@@ -56,6 +57,10 @@ public class customers  {
 
 	public customer[] getCustomers() {
 		return this.customers;
+	}
+
+	public int getNumOfImages() {
+		return this.numOfImages;
 	}
 
 	public void setContent(MyContent content) {
@@ -68,9 +73,9 @@ public class customers  {
 		while (this.customers[i] != null) {
 			i=(int)((Math.random())*numberOfCustomers);
 		}
-		int j=(int) ((Math.random())*numberOfCustomers);
+		int j=(int) ((Math.random())*numOfImages);
 		while (imageVisible[j] == true) {
-			j=(int) ((Math.random())*numberOfCustomers);
+			j=(int) ((Math.random())*numOfImages);
 		}
 		this.customers[i] = new customer(String.valueOf(j), content.board().isComplete(), customerLocation.values()[i], playerListener, content);
 		this.imageVisible[j] = true;

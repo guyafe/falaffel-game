@@ -39,6 +39,8 @@ public class customer implements ShapeListener {
 	private final String img;
 	private final String imgID;
 	private final customerLocation location;
+	private final int height;
+	private final int barYLocation;
 	private level patience = level.none;
 	private String patienceIMG = patience.getBar();
 	private boolean selection;
@@ -50,10 +52,18 @@ public class customer implements ShapeListener {
 		this.imgID=imgID;
 		this.img="resources/" +imgID+".png";
 		this.selection=selection;
-		this.location = location;
 		this.playerListener = pListener;
 		this.content=content;
-
+		this.location = location;
+		int x = Integer.valueOf(imgID);
+		if (x==1 || x==2){
+			this.height=300;
+			this.barYLocation=location.getYLocation()-200;
+		}
+		else{
+			this.height=200;
+			this.barYLocation=location.getYLocation()-86;
+		}
 		
 	}	
 	
@@ -94,6 +104,15 @@ public class customer implements ShapeListener {
 		this.leavingCounter=counter;
 
 	}
+
+	public int getHeight() {
+		return this.height;
+	}
+
+	public int getBarYLocation() {
+		return this.barYLocation;
+	}
+
 	public void increaseLeavingCounter (){
 		this.leavingCounter++;
 

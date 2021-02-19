@@ -35,52 +35,58 @@ public class MyGame extends Game {
 		//תמונת רקע
 		Image img = new Image("bg","resources/background.png",812,1200,500,400);
 		img.setzOrder(1);
+		// img.setShapeListener(content.board());
 		canvas.addShape(img);
 		
+		// הוספת עומק לרקע
+		img = new Image("cash_up","resources/cash_up.png",20,30,895,418);
+		img.setzOrder(4);
+		canvas.addShape(img);
+		
+		img = new Image("cash","resources/cash.png",100,50,860,473);
+		img.setzOrder(4);
+		canvas.addShape(img);
+
+		img = new Image("right_sign","resources/right_sign.png",55,38,488,480);
+		img.setzOrder(4);
+		canvas.addShape(img);
+
+		img = new Image("left_sign","resources/left_sign.png",100,60,283,472);
+		img.setzOrder(4);
+		canvas.addShape(img);
+
+		img = new Image("wall","resources/wall.png",191,280,187,312);
+		img.setzOrder(4);
+		canvas.addShape(img);
+		
+		img = new Image("pita","resources/pita.png",115,40,774,478);
+		img.setzOrder(4);
+		canvas.addShape(img);
+
 		//מציג את התמונות של התוספות
 		Topping salad = content.salad();
 		img = new Image(salad.getImageID(),salad.getImage(),150,90,salad.getLocation().xLocation(), salad.getLocation().yLocation());
 		img.setShapeListener(salad);
+		img.setzOrder(4);
 		canvas.addShape(img);
 		
 		Topping hummus = content.hummus();
 		img = new Image(hummus.getImageID(),hummus.getImage(),200,50,hummus.getLocation().xLocation(), hummus.getLocation().yLocation());
 		img.setShapeListener(hummus);
+		img.setzOrder(4);
 		canvas.addShape(img);
 
 		Topping fries = content.fries();
 		img = new Image(fries.getImageID(),fries.getImage(),200,80,fries.getLocation().xLocation(), fries.getLocation().yLocation());
 		img.setShapeListener(fries);
+		img.setzOrder(4);
 		canvas.addShape(img);
 
 		Topping falafel = content.falafel();
 		img = new Image(falafel.getImageID(),falafel.getImage(),200,60,falafel.getLocation().xLocation(), falafel.getLocation().yLocation());
 		img.setShapeListener(falafel);
+		img.setzOrder(4);
 		canvas.addShape(img);
-
-		//מציג את הניקוד של השחקן
-		shapes.TextLabel scoreTXT = content.score();
-		scoreTXT.getLabel().setText(String.valueOf(content.player().getScore()));
-		scoreTXT.setzOrder(1);
-		scoreTXT.setFontName("times new roman");
-		scoreTXT.getLabel().setForeground(java.awt.Color.black);
-		canvas.addShape(scoreTXT);
-
-		//מציג את החיים הנותרים לשחקן
-		shapes.TextLabel livesTXT = content.lives();
-		livesTXT.getLabel().setText(String.valueOf(content.player().getLives()));
-		livesTXT.setzOrder(1);
-		livesTXT.setFontName("times new roman");
-		livesTXT.getLabel().setForeground(java.awt.Color.black);
-		canvas.addShape(livesTXT);
-
-		
-		//כמות התוספות במסך
-		canvas.addShape(content.saladAmount());
-		canvas.addShape(content.hummusAmount());
-		canvas.addShape(content.friesAmount());
-		canvas.addShape(content.falafelAmount());
-		content.board().generateDish();
 
 		// תמונה של פיתה מלאה. מוסתרת כל עוד לא השלימו מנה
 		img = new Image("full","resources/full.png",255,127,776,620);
@@ -91,7 +97,7 @@ public class MyGame extends Game {
 		refill seller = content.seller();
 		img = new Image(seller.getImageID(),seller.getImage(),130,280,188, 502);
 		img.setShapeListener(seller);
-		img.setzOrder(4);
+		img.setzOrder(5);
 		canvas.addShape(img);
 
 		//תמונת זבובים
@@ -112,9 +118,53 @@ public class MyGame extends Game {
 		canvas.addShape(img);	
 		canvas.hide("gas");
 
+		//מציג את הניקוד של השחקן
+		shapes.TextLabel txt = content.score();
+		txt.getLabel().setText(String.valueOf(content.player().getScore()));
+		txt.setzOrder(1);
+		txt.setFontSize(40);
+		txt.setFontName("times new roman");
+		txt.getLabel().setForeground(java.awt.Color.black);
+		canvas.addShape(txt);
+
+		//מציג את החיים הנותרים לשחקן
+		txt = content.lives();
+		txt.getLabel().setText(String.valueOf(content.player().getLives()));
+		txt.setzOrder(1);
+		txt.setFontSize(40);
+		txt.setFontName("times new roman");
+		txt.getLabel().setForeground(java.awt.Color.black);
+		canvas.addShape(txt);
+
+		//כמות התוספות במסך
+		txt = content.falafelAmount();
+		txt.setzOrder(1);
+		txt.setFontName("david");
+		txt.getLabel().setForeground(java.awt.Color.black);
+		canvas.addShape(txt);
+
+		txt = content.saladAmount();
+		txt.setzOrder(1);
+		txt.setFontName("david");
+		txt.getLabel().setForeground(java.awt.Color.black);
+		canvas.addShape(txt);
+
+		txt = content.friesAmount();
+		txt.setzOrder(1);
+		txt.setFontName("david");
+		txt.getLabel().setForeground(java.awt.Color.black);
+		canvas.addShape(txt);
+
+		txt = content.hummusAmount();
+		txt.setzOrder(1);
+		txt.setFontName("david");
+		txt.getLabel().setForeground(java.awt.Color.black);
+		canvas.addShape(txt);
+
+		content.board().generateDish();
 
 		//כותרת לתוצאת השחקן
-		shapes.TextLabel txt = new shapes.TextLabel("header", "score:        lives:", 120, 112);;
+		txt = new shapes.TextLabel("header", "score:        lives:", 120, 112);;
 		txt.setzOrder(1);
 		txt.setFontSize(20);
 		txt.getLabel().setForeground(java.awt.Color.black);
