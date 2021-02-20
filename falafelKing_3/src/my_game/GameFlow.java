@@ -20,6 +20,10 @@ public class GameFlow implements ShapeListener{
         return this.isPaused;
     }
 
+    public AudioPlayer getAudio(){
+        return this.audio;
+    }
+
     public void switchMusicStatus(){
         if (this.musicPaused==true) {
             audio.play("resources/theme.wav", 0);

@@ -70,7 +70,7 @@ public class player implements PlayerListener {
             canvas.deleteShape(String.valueOf(i));
             canvas.deleteShape(String.valueOf(i)+"patience"); 
         }
-        Game.audioPlayer().stop();
+        content.flow().getAudio().stop();
         Game.endGame();
      }
 
