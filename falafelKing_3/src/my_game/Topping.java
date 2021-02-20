@@ -7,16 +7,17 @@ import main.MyContent;
 
 public class Topping implements ShapeListener {
 
-
 	public enum top{
-		falafel (380,600),  
-		salad (583,520),
-		fries (390,515),
-		hummus (592,608);
-		private final int xLocation, yLocation;
-		private top(int xLocation, int yLocation) {
+		falafel (380,600,200,60),  
+		salad (583,520,150,90),
+		fries (390,515,200,80),
+		hummus (592,608,200,50);
+		private final int xLocation, yLocation,width,height;
+		private top(int xLocation, int yLocation, int width, int height) {
 			this.xLocation = xLocation;
 			this.yLocation = yLocation;
+			this.width=width;
+			this.height=height;
 		}
 		public int xLocation() {
 			return xLocation;
@@ -24,11 +25,17 @@ public class Topping implements ShapeListener {
 		public int yLocation() {
 			return yLocation;
 		}
+		public int getWidth() {
+			return width;
+		}
+		public int getHeight() {
+			return height;
+		}
 		public top next() {
 			if (this.ordinal()==top.values().length-1){
 				return null;
 			}
-			return top.values()[this.ordinal()+1]; //לוודא שעובד
+			return top.values()[this.ordinal()+1]; 
 			
 		}
     }
@@ -102,23 +109,11 @@ public class Topping implements ShapeListener {
 			
 			reduceQuantity(); //מחסר מהכמות שיש במלאי
 			TextLabel txt =(TextLabel) Game.UI().canvas().getShape(shapeID+"Amount");
-			if(shapeID=="salad"){   //מחסיר 1 מהכמות שנשארה כדי להשלים מנה ומציג
-				toppingAmount=content.board().getSaladAmount();
-				txt.getLabel().setText(String.valueOf(content.board().reduceSalad()));
-			}
-			else if(shapeID=="fries"){
-				toppingAmount=content.board().getFriesAmount();
-				txt.getLabel().setText(String.valueOf(content.board().reduceFries()));
-			}
-			else if(shapeID=="falafel"){
-				toppingAmount=content.board().getFalafelAmount();
-				txt.getLabel().setText(String.valueOf(content.board().reduceFalafel()));
-			}
-			else{
-				toppingAmount=content.board().getHummusAmount();
-				txt.getLabel().setText(String.valueOf(content.board().reduceHummus())); 
+			top t = top.valueOf(shapeID);
 
-			}
+			toppingAmount=content.board().getAmount()[t.ordinal()];//מחסיר 1 מהכמות שנשארה כדי להשלים מנה ומציג
+			txt.getLabel().setText(String.valueOf(content.board().reduceToppingAmount(t)));	
+
 			if(toppingAmount>0){  //מעדכן את הניקוד
 				content.player().changeScore(1);
 				Game.audioPlayer().play("resources/adding.wav", 1);

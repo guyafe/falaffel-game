@@ -4,6 +4,7 @@ import game.Game;
 import shapes.Image;
 import game.ShapeListener;
 import main.MyContent;
+import my_game.Topping.top;
 
 public class refill implements ShapeListener {
 
@@ -56,10 +57,9 @@ public class refill implements ShapeListener {
 			else {
 				
 				if(x>345 || y>465 && x>306){
-					this.content.hummus().refill();
-					this.content.salad().refill();
-					this.content.fries().refill();
-					this.content.falafel().refill();
+					for (int i = 0; i < top.values().length; i++) {
+						this.content.toppings()[i].refill();
+					}
 				}
 				else {
 					this.index=1-this.index;
