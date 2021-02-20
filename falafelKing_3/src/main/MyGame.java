@@ -35,7 +35,6 @@ public class MyGame extends Game {
 		//תמונת רקע
 		Image img = new Image("bg","resources/background.png",812,1200,500,400);
 		img.setzOrder(1);
-		// img.setShapeListener(content.board());
 		canvas.addShape(img);
 		
 		// הוספת עומק לרקע
