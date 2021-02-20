@@ -1,8 +1,6 @@
 package main;
 
-import my_game.board;
 import java.awt.event.KeyEvent;
-
 import game.KeyboardListener;
 
 public class MyKeyboardListener extends KeyboardListener{

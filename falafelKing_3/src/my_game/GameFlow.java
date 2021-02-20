@@ -1,23 +1,34 @@
 package my_game;
 
-import game.MouseHandler;
-import game.Game;
-import game.PeriodicLoop;
-import shapes.Image;
+import game.AudioPlayer;
 import game.ShapeListener;
-import main.MyContent;
 
 public class GameFlow implements ShapeListener{
     
     private boolean isPaused=false;
-    private MyContent content;
-    public GameFlow(MyContent content){
-        this.content=content;
-    }
+    private boolean musicPaused=true;
+    private AudioPlayer audio = new AudioPlayer();
+    public GameFlow(){
 
+    }
 
     public boolean getPausedStatus(){
         return this.isPaused;
+    }
+
+    public boolean getMusicStatus(){
+        return this.isPaused;
+    }
+
+    public void switchMusicStatus(){
+        if (this.musicPaused==true) {
+            audio.play("resources/theme.wav", 0);
+        }
+        else {
+            audio.stop();
+        }
+        this.musicPaused= !this.musicPaused;
+
     }
 
     public void switchPausedStatus(){
@@ -27,12 +38,18 @@ public class GameFlow implements ShapeListener{
 
     @Override
 	public void shapeClicked(String shapeID, int x, int y) {
-        if (y>144){
+        if (y>144){//לחיצה על כפתור העצירה
             this.switchPausedStatus();
-
+            
+            if(this.isPaused){
+                audio.stop();
+            }
+            else if(this.musicPaused==false){
+                audio.play("resources/theme.wav", 0);
+            }
         }
-        else{
-
+        else if(this.isPaused==false){//לחיצה על כפתור המוזיקה במידה וניתן
+            this.switchMusicStatus();
         }
 		
 	}

@@ -1,12 +1,8 @@
 package my_game;
 
-import DB.ExcelTable;
 import game.ShapeListener;
 import main.MyContent;
 import game.Game;
-import game.PeriodicLoop;
-import shapes.Image;
-import java.util.ArrayList;
 
 public class Spray implements ShapeListener{
 
@@ -37,6 +33,7 @@ public class Spray implements ShapeListener{
 	@Override
 	public void shapeClicked(String shapeID, int x, int y) {
 		if(this.content.flow().getPausedStatus()==false){
+            Game.audioPlayer().play("resources/spray.wav", 1);
             Game.UI().canvas().hide("flies");
             this.fliesTimes=0;
             Game.UI().canvas().show("gas");

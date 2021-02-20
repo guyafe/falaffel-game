@@ -21,7 +21,9 @@ public class AudioPlayer {
 	private String musicPath;
 	private MusicStatus status = MusicStatus.STOPPED;
 	
-	
+	public AudioPlayer(){//הוספנו כדי לאפשר הפעלה ועצירה של מספר קבצי שמע במקביל 
+
+	}
 	/*
 	 * Play a sound file for numIterations times.
 	 * To play in a continuous loop, use numIterations = 0;
@@ -46,6 +48,7 @@ public class AudioPlayer {
 	}
 	
 	public void stop() {
+		
 		clip.stop();
 		status = MusicStatus.STOPPED;
 	}
@@ -53,7 +56,6 @@ public class AudioPlayer {
 	public void close() {
 		clip.close();
 	}
-	
 	
 	public MusicStatus getStatus() {
 		return status;

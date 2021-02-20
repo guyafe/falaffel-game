@@ -1,14 +1,9 @@
-
 package my_game;
 
-import DB.ExcelTable;
 import game.ShapeListener;
 import main.MyContent;
 import my_game.customers.customerLocation;
 import game.Game;
-import game.PeriodicLoop;
-import shapes.Image;
-import shapes.TextLabel;
 
 public class customer implements ShapeListener {
 
@@ -32,7 +27,7 @@ public class customer implements ShapeListener {
 			if (this.ordinal()==level.values().length-1) {
 				return null;
 			}
-			return level.values()[this.ordinal()+1]; //לוודא שעובד
+			return level.values()[this.ordinal()+1]; 
 		}
 	}
 
@@ -148,6 +143,7 @@ public class customer implements ShapeListener {
 			content.score().getLabel().setText(String.valueOf(content.player().getScore()));
 			content.customers().changeSelection(false);
 			content.board().generateDish();
+			Game.audioPlayer().play("resources/delivered.wav", 1);
 		}
 	}
 

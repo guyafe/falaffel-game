@@ -1,6 +1,5 @@
 package main;
 
-import java.awt.Color;
 import game.Game;
 import game.GameContent;
 import gui.GameCanvas;
@@ -36,14 +35,11 @@ public class MyContent extends GameContent{
 	private refill seller;
 	private Spray spray;
 	private GameFlow flow;
-	//TODO
-	//Declare your own character
+
 
 	@Override
 	public void initContent() {
-		// GameCanvas canvas = Game.UI().canvas();
-
-		
+	
 		this.player = new player(this);
 		
 		this.customers = new customers((PlayerListener)player);
@@ -68,7 +64,7 @@ public class MyContent extends GameContent{
 
 		this.spray = new Spray(this);
 
-		this.flow = new GameFlow(this);
+		this.flow = new GameFlow();
 
 	}	
 	public player player() {
@@ -136,28 +132,18 @@ public class MyContent extends GameContent{
 	}
 
 	public void addCharacter(int number) {
-		//TODO
-		//Create an instance of your character and set its properties with
-		//initial values
-		//Make sure you set values to the location and imageID properties
 		
 		GameCanvas canvas = Game.UI().canvas();
 		//TODO
 		//Add your character shape or image to the canvas using its addShape method
 		//Use the properties of your character for the parameters of the shape.
-		
-		
-/*
-		Image img = new Image("bg","resources/background.png",200,600,500,500);
-		canvas.addShape(img);
-		
-		*/
+
 		customer customer = this.customers.getCustomers()[number];
 		customerLocation loc = customer.getCustomerLocation();
 
 		Image img = new Image(customer.getImageID(),customer.getImage(),200,customer.getHeight(),loc.getXLocation(), loc.getYLocation());
 		
-		int x= Integer.valueOf(customer.getImageID());//למה לעזאזל הייתי צריך להמיר לint???
+		int x= Integer.valueOf(customer.getImageID());
 		if(x!=1 && x!=2){//מנמיך בקנבס לקוחות נמוכים
 			img.setPosY(img.getPosY()+50);
 		}
@@ -169,16 +155,6 @@ public class MyContent extends GameContent{
 		img.setzOrder(4);
 		canvas.addShape(img);
 	
-	
-
-
 	}
 	
-	//TODO
-	//create a method with the name myCharacter which returns
-	//your character for others to use.
-
-	
-	//TODO
-	//create a changeCharacter method and change inside all the properties you like.
 }

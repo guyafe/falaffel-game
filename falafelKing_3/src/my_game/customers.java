@@ -1,13 +1,8 @@
 package my_game;
 
-import DB.ExcelTable;
-import game.ShapeListener;
 import main.MyContent;
-import game.Game;
-import game.PeriodicLoop;
-import shapes.Image;
 
-public class customers  {
+public class customers{
 
 	public enum customerLocation{
 		a (350,342),
@@ -85,7 +80,7 @@ public class customers  {
 	public void removeCustomer(String imgID) {
 		for (int i = 0; i < this.customers.length; i++) {
 			customer currentCustomer = this.customers[i];
-			if(currentCustomer != null && currentCustomer.getImageID()==imgID) { // איחדנו את ה איפים
+			if(currentCustomer != null && currentCustomer.getImageID()==imgID) { 
 					this.customers[i] = null;
 			}
 		}

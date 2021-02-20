@@ -1,11 +1,5 @@
 package my_game;
-import javax.imageio.ImageIO;
-import DB.ExcelTable;
-import game.ShapeListener;
-import main.MyContent;
 import game.Game;
-import game.PeriodicLoop;
-import shapes.Image;
 import shapes.TextLabel;
 
 public class board {

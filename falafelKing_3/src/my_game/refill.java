@@ -1,13 +1,8 @@
 package my_game;
 
-import DB.ExcelTable;
-import game.MouseHandler;
 import game.Game;
-import game.PeriodicLoop;
 import shapes.Image;
-import shapes.TextLabel;
 import game.ShapeListener;
-import gui.GameCanvas;
 import main.MyContent;
 
 public class refill implements ShapeListener {

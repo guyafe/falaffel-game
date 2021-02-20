@@ -12,7 +12,7 @@ public class player implements PlayerListener {
     private int lives;
 
 
-    public player (MyContent content) {//זה הבנאי של המחלקה, השם בסוגריים כי זה פרמטר שמישהו אחר מביא לו, בהמשך יש את הדברים הקבועים שקורים עם תחילת מהחלקה//
+    public player (MyContent content) {
         this.content=content;
         this.score=0;
         this.lives=3;
@@ -70,6 +70,7 @@ public class player implements PlayerListener {
             canvas.deleteShape(String.valueOf(i));
             canvas.deleteShape(String.valueOf(i)+"patience"); 
         }
+        Game.audioPlayer().stop();
         Game.endGame();
      }
 

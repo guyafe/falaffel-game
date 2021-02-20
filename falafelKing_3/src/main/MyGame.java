@@ -101,7 +101,7 @@ public class MyGame extends Game {
 		canvas.addShape(img);
 
 		//תמונת זבובים
-		img = new Image("flies","resources/flies.png",255,127,576,420);
+		img = new Image("flies","resources/flies.png",160,110,576,420);
 		canvas.addShape(img);
 		img.setzOrder(5);
 		canvas.hide("flies");
@@ -193,8 +193,7 @@ public class MyGame extends Game {
 		canvas.addShape(txt);
 	}
 	
-		//TODO
-		// Add the ChangeButton button to the dashboard
+	
 
 	@Override
 	public void setGameContent(GameContent content) {
@@ -219,6 +218,7 @@ public class MyGame extends Game {
 		game.setMouseHandler(new MyMouseHandler());
 		game.setKeyboardListener(new MyKeyboardListener());
 		game.initGame();
+		game.content.flow().switchMusicStatus();
 	}
 
 

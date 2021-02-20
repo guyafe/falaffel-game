@@ -1,20 +1,15 @@
 package my_game;
 
-import DB.ExcelTable;
-import game.MouseHandler;
 import game.Game;
-import game.PeriodicLoop;
-import shapes.Image;
 import shapes.TextLabel;
 import game.ShapeListener;
-import gui.GameCanvas;
 import main.MyContent;
 
 public class Topping implements ShapeListener {
 
 
 	public enum top{
-		falafel (380,600),  //סתם ערכים כרגע. לשנות ככה שיתאים בלוח
+		falafel (380,600),  
 		salad (583,520),
 		fries (390,515),
 		hummus (592,608);
@@ -45,7 +40,6 @@ public class Topping implements ShapeListener {
 	private int quantity;
 	private boolean visible;
 	private MyContent content;
-	// private GameCanvas canvas;
 
 	public Topping(top location,  MyContent content) {
 		this.location=location;
@@ -127,15 +121,19 @@ public class Topping implements ShapeListener {
 			}
 			if(toppingAmount>0){  //מעדכן את הניקוד
 				content.player().changeScore(1);
+				Game.audioPlayer().play("resources/adding.wav", 1);
 			}
 			else{
 				content.player().changeScore(-1);
+				Game.audioPlayer().play("resources/wrong.wav", 1);
+				
 			}
 			content.score().getLabel().setText(String.valueOf(content.player().getScore()));
 		}
 		if(content.board().isComplete()==true){
 			content.customers().changeSelection(true);
 			Game.UI().canvas().show("full");
+		
 		}
 		setVisibility(this.quantity>0);
 	}
