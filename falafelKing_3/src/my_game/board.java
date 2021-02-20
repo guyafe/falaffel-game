@@ -1,12 +1,38 @@
 package my_game;
 import game.Game;
+import my_game.Topping.top;
 import shapes.TextLabel;
 
 public class board {
-	private int saladAmount;
-	private int hummusAmount;
-	private int falafelAmount;
-	private int friesAmount;
+
+	public enum amountLabel{
+		falafel (270,530),  
+		salad (485,473),
+		fries (302,455),
+		hummus (495,540);
+		private final int xLocation, yLocation;
+		private amountLabel(int xLocation, int yLocation) {
+			this.xLocation = xLocation;
+			this.yLocation = yLocation;
+		
+		}
+		public int xLocation() {
+			return xLocation;
+		}
+		public int yLocation() {
+			return yLocation;
+		}
+		public amountLabel next() {
+			if (this.ordinal()==amountLabel.values().length-1){
+				return null;
+			}
+			return amountLabel.values()[this.ordinal()+1]; 
+			
+		}
+    }
+	
+	
+	private int[] amount= new int[top.values().length];
 	private final int maxAmount=3;
 	private int delay=20;
 	private int currentDelay=0;
@@ -18,22 +44,12 @@ public class board {
 	}
 
 	public void generateDish(){
-		this.falafelAmount=(int) ((Math.random())*this.maxAmount)+1;
-		this.saladAmount=(int) ((Math.random())*this.maxAmount)+1;
-		this.friesAmount=(int) ((Math.random())*this.maxAmount)+1;
-		this.hummusAmount=(int) ((Math.random())*this.maxAmount)+1;
 
-		TextLabel txt =(TextLabel) Game.UI().canvas().getShape("hummusAmount");
-		txt.getLabel().setText(String.valueOf(this.hummusAmount)); 
-
-		txt =(TextLabel) Game.UI().canvas().getShape("saladAmount");
-		txt.getLabel().setText(String.valueOf(this.saladAmount)); 
-
-		txt =(TextLabel) Game.UI().canvas().getShape("friesAmount");
-		txt.getLabel().setText(String.valueOf(this.friesAmount)); 
-
-		txt =(TextLabel) Game.UI().canvas().getShape("falafelAmount");
-		txt.getLabel().setText(String.valueOf(this.falafelAmount)); 
+		for (int i = 0; i < amount.length; i++) {
+			this.amount[i]=(int) ((Math.random())*this.maxAmount)+1;
+			TextLabel txt =(TextLabel) Game.UI().canvas().getShape(top.values()[i].toString()+"Amount");
+			txt.getLabel().setText(String.valueOf(this.amount[i])); 
+		} 
 
 		Game.UI().canvas().hide("full");
 	}
@@ -58,55 +74,24 @@ public class board {
 		this.currentDelay=currentDelay;
 	}
 
-	public int getHummusAmount(){
-		return this.hummusAmount;
+	public int[] getAmount(){
+		return this.amount;
 	}
-
-	public int getSaladAmount(){
-		return this.saladAmount;
-	}
-
-	public int getFriesAmount(){
-		return this.friesAmount;
-	}
-
-	public int getFalafelAmount(){
-		return this.falafelAmount;
-	}
-
-	public int reduceHummus(){
-		if (this.hummusAmount>0){ 
-		this.hummusAmount--;
+	public int reduceToppingAmount(top t){	 
+		if (this.amount[t.ordinal()]>0){
+			this.amount[t.ordinal()]--;
 		}
-		return this.hummusAmount;
-	}
-
-	public int reduceSalad(){
-		if(this.saladAmount>0){
-		this.saladAmount--;
-		}
-		return this.saladAmount;
-	}
-
-	public int reduceFries(){
-		if(this.friesAmount>0){
-		this.friesAmount--;
-		}
-		return this.friesAmount;
-	}
-
-	public int reduceFalafel(){
-		if(this.falafelAmount>0){
-		this.falafelAmount--;
-		}
-		return this.falafelAmount;
+		return this.amount[t.ordinal()];
 	}
 
 	public boolean isComplete(){
-		if (this.hummusAmount==0 && this.saladAmount==0 && this.friesAmount==0 && this.falafelAmount==0){
-			return true;
+		boolean complete=true;
+		for (int i = 0; i < amount.length; i++) {
+			if(this.amount[i]!=0){
+				complete =false;
+			}
 		}
-		return false;
+		return complete;
 	}
 	
 }

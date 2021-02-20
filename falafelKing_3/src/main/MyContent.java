@@ -12,6 +12,7 @@ import my_game.Topping;
 import my_game.player;
 import my_game.refill;
 import my_game.Topping.top;
+import my_game.board.amountLabel;
 import my_game.customers.customerLocation;
 import shapes.Image;
 import shapes.TextLabel;
@@ -22,16 +23,12 @@ public class MyContent extends GameContent{
 	private board board;
 	private customers customers;
 	private player player;
-	private Topping hummus;
-	private Topping salad;
-	private Topping fries;
-	private Topping falafel;
+
+	private Topping[] toppings = new Topping[top.values().length];
+	private shapes.TextLabel[] amountTXTlabel=new shapes.TextLabel[top.values().length];
+	
 	private shapes.TextLabel score;
 	private shapes.TextLabel lives;
-	private shapes.TextLabel hummusAmount;
-	private shapes.TextLabel saladAmount;
-	private shapes.TextLabel friesAmount;
-	private shapes.TextLabel falafelAmount;
 	private refill seller;
 	private Spray spray;
 	private GameFlow flow;
@@ -44,21 +41,17 @@ public class MyContent extends GameContent{
 		
 		this.customers = new customers((PlayerListener)player);
 		this.customers.setContent(this);
-		
-		this.falafel = new Topping(top.falafel, this);
-        this.salad = new Topping(top.salad, this);
-        this.fries = new Topping(top.fries, this);
-        this.hummus = new Topping(top.hummus, this);
+		this.board = new board();
+
+		for (int i = 0; i < toppings.length; i++) {
+			toppings[i]=new Topping(top.values()[i], this);
+
+			amountLabel lbl = amountLabel.values()[i];
+			this.amountTXTlabel[i] = new shapes.TextLabel(lbl.toString()+"Amount",String.valueOf(board.getAmount()[i]), lbl.xLocation(), lbl.yLocation());
+		}
 
 		this.score = new shapes.TextLabel("score", "10", 125, 135);
 		this.lives = new shapes.TextLabel("lives", "10", 230, 135);
-
-		this.board = new board();
-
-		this.hummusAmount = new shapes.TextLabel("hummusAmount",String.valueOf(board.getHummusAmount()), 495, 540);
-		this.saladAmount = new shapes.TextLabel("saladAmount",String.valueOf(board.getSaladAmount()), 485, 473);
-		this.friesAmount = new shapes.TextLabel("friesAmount",String.valueOf(board.getFriesAmount()), 302, 455);
-		this.falafelAmount = new shapes.TextLabel("falafelAmount",String.valueOf(board.getFalafelAmount()), 270, 530);
 
 		this.seller = new refill(this);
 
@@ -79,36 +72,12 @@ public class MyContent extends GameContent{
 		return customers;
 	}
 
-	public Topping salad() {
-		return salad;
+	public Topping[] toppings() {
+		return toppings;
 	}
 
-	public Topping fries() {
-		return fries;
-	}
-
-	public Topping hummus() {
-		return hummus;
-	}
-
-	public Topping falafel() {
-		return falafel;
-	}
-
-	public TextLabel saladAmount() {
-		return saladAmount;
-	}
-
-	public TextLabel friesAmount() {
-		return friesAmount;
-	}
-
-	public TextLabel hummusAmount() {
-		return hummusAmount;
-	}
-
-	public TextLabel falafelAmount() {
-		return falafelAmount;
+	public TextLabel[] amountLabel() {
+		return amountTXTlabel;
 	}
 
 	public TextLabel score() {

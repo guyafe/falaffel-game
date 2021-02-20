@@ -31,9 +31,12 @@ public class MyGame extends Game {
 	@Override
 	protected void initCanvas() {
 		GameCanvas canvas = gameUI.canvas();
-		
+		shapes.TextLabel txt;
+		Image img;
+
+
 		//תמונת רקע
-		Image img = new Image("bg","resources/background.png",812,1200,500,400);
+		img = new Image("bg","resources/background.png",812,1200,500,400);
 		img.setzOrder(1);
 		canvas.addShape(img);
 		
@@ -62,30 +65,22 @@ public class MyGame extends Game {
 		img.setzOrder(4);
 		canvas.addShape(img);
 
-		//מציג את התמונות של התוספות
-		Topping salad = content.salad();
-		img = new Image(salad.getImageID(),salad.getImage(),150,90,salad.getLocation().xLocation(), salad.getLocation().yLocation());
-		img.setShapeListener(salad);
-		img.setzOrder(4);
-		canvas.addShape(img);
 		
-		Topping hummus = content.hummus();
-		img = new Image(hummus.getImageID(),hummus.getImage(),200,50,hummus.getLocation().xLocation(), hummus.getLocation().yLocation());
-		img.setShapeListener(hummus);
-		img.setzOrder(4);
-		canvas.addShape(img);
+		for (int i = 0; i < top.values().length; i++) {
+			Topping t = content.toppings()[i];//מציג את התמונות של התוספות
+			img = new Image(t.getImageID(),t.getImage(),t.getLocation().getWidth(),t.getLocation().getHeight(),t.getLocation().xLocation(), t.getLocation().yLocation());
+			img.setShapeListener(t);
+			img.setzOrder(4);
+			canvas.addShape(img);
 
-		Topping fries = content.fries();
-		img = new Image(fries.getImageID(),fries.getImage(),200,80,fries.getLocation().xLocation(), fries.getLocation().yLocation());
-		img.setShapeListener(fries);
-		img.setzOrder(4);
-		canvas.addShape(img);
+			txt = content.amountLabel()[i];//מציג את כמות התוספות שיש כדי להשלים מנה
+			txt.setzOrder(1);
+			txt.setFontName("david");
+			txt.getLabel().setForeground(java.awt.Color.black);
+			canvas.addShape(txt);
+		}
 
-		Topping falafel = content.falafel();
-		img = new Image(falafel.getImageID(),falafel.getImage(),200,60,falafel.getLocation().xLocation(), falafel.getLocation().yLocation());
-		img.setShapeListener(falafel);
-		img.setzOrder(4);
-		canvas.addShape(img);
+		content.board().generateDish();
 
 		// תמונה של פיתה מלאה. מוסתרת כל עוד לא השלימו מנה
 		img = new Image("full","resources/full.png",255,127,776,620);
@@ -129,10 +124,8 @@ public class MyGame extends Game {
 		img.setShapeListener(content.flow());
 		canvas.addShape(img);
 
-
-
 		//מציג את הניקוד של השחקן
-		shapes.TextLabel txt = content.score();
+		txt = content.score();
 		txt.getLabel().setText(String.valueOf(content.player().getScore()));
 		txt.setzOrder(1);
 		txt.setFontSize(40);
@@ -148,33 +141,6 @@ public class MyGame extends Game {
 		txt.setFontName("times new roman");
 		txt.getLabel().setForeground(java.awt.Color.black);
 		canvas.addShape(txt);
-
-		//כמות התוספות במסך
-		txt = content.falafelAmount();
-		txt.setzOrder(1);
-		txt.setFontName("david");
-		txt.getLabel().setForeground(java.awt.Color.black);
-		canvas.addShape(txt);
-
-		txt = content.saladAmount();
-		txt.setzOrder(1);
-		txt.setFontName("david");
-		txt.getLabel().setForeground(java.awt.Color.black);
-		canvas.addShape(txt);
-
-		txt = content.friesAmount();
-		txt.setzOrder(1);
-		txt.setFontName("david");
-		txt.getLabel().setForeground(java.awt.Color.black);
-		canvas.addShape(txt);
-
-		txt = content.hummusAmount();
-		txt.setzOrder(1);
-		txt.setFontName("david");
-		txt.getLabel().setForeground(java.awt.Color.black);
-		canvas.addShape(txt);
-
-		content.board().generateDish();
 
 		//כותרת לתוצאת השחקן
 		txt = new shapes.TextLabel("header", "score:        lives:", 120, 112);;
